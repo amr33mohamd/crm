@@ -13,6 +13,8 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+// Route::get('/', function () {
+//     return;
+// });
+
+Route::get('/','App\Http\Controllers\Agent\LeadsController@index');

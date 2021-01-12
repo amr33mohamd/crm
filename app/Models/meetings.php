@@ -12,4 +12,8 @@ class meetings extends Model
         'id',
 
     ];
+    public function meetingable()
+    {
+        return $this->morphTo();
+    }
 }

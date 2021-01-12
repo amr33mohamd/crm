@@ -52,7 +52,18 @@ class leads extends Model
                    {
                       return $this->belongsTo(hear_about_uses::class,'hear_about_us_id','id');
                     }
-
+                    public function calls()
+                        {
+                            return $this->morphMany(calls::class, 'callable');
+                        }
+                        public function meetings()
+                            {
+                                return $this->morphMany(meetings::class, 'meetingable');
+                            }
+                            public function tasks()
+                                {
+                                    return $this->morphMany(tasks::class, 'taskable');
+                                }
 
 
 }

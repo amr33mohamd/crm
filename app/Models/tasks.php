@@ -16,4 +16,8 @@ class tasks extends Model
     {
        return $this->belongsTo(currencies::class,'currency_id','id');
      }
+     public function taskable()
+     {
+         return $this->morphTo();
+     }
 }

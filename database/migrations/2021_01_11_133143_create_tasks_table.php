@@ -30,6 +30,7 @@ class CreateTasksTable extends Migration
             $table->string('exchange_rate')->nullable();
             $table->unsignedBigInteger('currency_id')->unsigned()->nullable();
             $table->foreign('currency_id')->references('id')->on('currencies')->onDelete('set null');
+            $table->morphs('taskable') ;
 
 
             $table->timestamps();

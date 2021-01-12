@@ -15,8 +15,8 @@ class CreateCallsTable extends Migration
     {
         Schema::create('calls', function (Blueprint $table) {
             $table->id();
-            // $table->integer('sales_stage_id')->unsigned()->nullable();
-            // $table->foreign('sales_stage_id')->references('id')->on('sales_stages')->onDelete('set null');
+            $table->unsignedBigInteger('sales_stage_id')->unsigned()->nullable();
+            $table->foreign('sales_stage_id')->references('id')->on('sales_stages')->onDelete('set null');
             $table->string('related_to')->nullable();
             $table->string('call_type')->nullable();
             $table->string('status')->default(1);
@@ -26,6 +26,7 @@ class CreateCallsTable extends Migration
             $table->integer('reminder')->default(1);
             $table->string('purpose')->nullable();
             $table->string('agenda')->nullable();
+            $table->morphs('callable');
 
 
 

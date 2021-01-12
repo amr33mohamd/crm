@@ -8,4 +8,12 @@ use Illuminate\Database\Eloquent\Model;
 class calls extends Model
 {
     use HasFactory;
+    protected $guarded = [
+        'id',
+
+    ];
+    public function callable()
+    {
+        return $this->morphTo();
+    }
 }

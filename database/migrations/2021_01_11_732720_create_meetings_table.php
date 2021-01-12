@@ -23,6 +23,7 @@ class CreateMeetingsTable extends Migration
             $table->integer('status')->default(1);
             $table->string('source')->nullable();
             $table->integer('confirmed')->default(1);
+            $table->morphs('meetingable');
 
 
 
