@@ -15,6 +15,9 @@ use App\Models\application_types;
 use App\Models\education_qualifications;
 use App\Models\traffic_mediums;
 use App\Models\hear_about_us;
+use App\Models\traffic_source;
+use App\Models\currencies;
+use App\Models\sales_stage;
 
 class leadsController extends AdminController
 {
@@ -62,10 +65,10 @@ class leadsController extends AdminController
         $grid->column('user_id', __('User id'))->display(function($id){
             $user = user::find($id);
             if($user != null ) {
-            return $user->name;
+            return "<a href=\"/admin/users?&id=".$user->id."\">$user->username</a>";
             }
             else {
-              return "";
+              return "k";
             }
 
         });;
@@ -75,7 +78,15 @@ class leadsController extends AdminController
         $grid->column('title', __('Title'));
         $grid->column('country_code', __('Country code'));
         $grid->column('gender', __('Gender'));
-        $grid->column('traffic_source_id', __('Traffic source id'));
+        $grid->column('traffic_source_id', __('Traffic source id'))->display(function($id){
+            $user = traffic_source::find($id);
+            if($user != null ) {
+            return $user->name;
+            }
+            else {
+              return "";
+            }
+        });
         $grid->column('company', __('Company'));
         $grid->column('industry_id', __('Industry id'))->display(function($id){
             $user = industry::find($id);
@@ -85,7 +96,7 @@ class leadsController extends AdminController
             else {
               return "";
             }
-        });;
+        });
         $grid->column('application_type_id', __('Application type id'))->display(function($id){
             $user = application_types::find($id);
             if($user != null ) {
@@ -114,7 +125,7 @@ class leadsController extends AdminController
             else {
               return "";
             }
-        });;
+        });
         $grid->column('secondary_email', __('Secondary email'));
         $grid->column('resume_recieved', __('Resume recieved'));
         $grid->column('follow_up', __('Follow up'));
@@ -137,7 +148,7 @@ class leadsController extends AdminController
             else {
               return "";
             }
-        });;
+        });
         $grid->column('city', __('City'));
         $grid->column('maritial_status', __('Maritial status'));
         $grid->column('traffic_ip', __('Traffic ip'));
@@ -251,67 +262,115 @@ class leadsController extends AdminController
     protected function form()
     {
         $form = new Form(new leads());
+        $form->tab('overview',function($form){
+          $form->text('contact_number', __('Contact number'));
+          $form->email('email', __('Email'));
+          $form->select('hear_about_us_id', __('Hear about us id'))->options(hear_about_us::all()->pluck('name', 'id'));
+          $form->text('message', __('Message'));
+          $form->select('status_id', __('Status id'))->options(lead_status::all()->pluck('name', 'id'));
+          $form->text('owner', __('Owner'));
+          $form->date('assignment_date', __('Assignment date'))->default(date('Y-m-d'));
+          $form->text('last_name', __('Last name'));
+          $form->select('traffic_medium_id', __('Traffic medium id'))->options(traffic_mediums::all()->pluck('name', 'id'));
+          $form->text('traffic_url', __('Traffic url'));
+          $form->text('traffic_content', __('Traffic content'));
+          $form->text('traffic_ip', __('Traffic ip'));
+          $form->select('traffic_source_id', __('Traffic source id'))->options(traffic_source::all()->pluck('name', 'id'));
+          $form->text('first_name', __('First name'));
+          $form->text('no_of_applicants', __('No of applicants'));
+          $form->text('secondary_email', __('Secondary email'));
+          $form->select('user_id', __('User id'))->options(User::all()->pluck('email', 'id'));
+          $form->image('image', __('Image'));
+          $form->text('traffic_campaign', __('Traffic campaign'));
+          $form->date('appointment_date', __('Appointment date'))->default(date('Y-m-d'));
 
-        $form->date('assignment_date', __('Assignment date'))->default(date('Y-m-d'));
-        $form->text('last_name', __('Last name'));
-        $form->text('owner', __('Owner'));
-        $form->select('status_id', __('Status id'))->options(lead_status::all()->pluck('name', 'id'));
-        $form->number('nationality_id', __('Nationality id'));
-        $form->text('contact_number', __('Contact number'));
-        $form->text('prefered_office_location', __('Prefered office location'));
-        $form->text('current_location', __('Current location'));
-        $form->number('user_id', __('User id'));
-        $form->text('message', __('Message'));
-        $form->image('image', __('Image'));
-        $form->text('code', __('Code'));
-        $form->text('title', __('Title'));
-        $form->text('country_code', __('Country code'));
-        $form->text('gender', __('Gender'));
-        $form->number('traffic_source_id', __('Traffic source id'));
-        $form->text('company', __('Company'));
-        $form->number('industry_id', __('Industry id'));
-        $form->number('application_type_id', __('Application type id'));
-        $form->text('first_name', __('First name'));
-        $form->date('birthday', __('Birthday'))->default(date('Y-m-d'));
-        $form->number('education_qualification_id', __('Education qualification id'));
-        $form->number('traffic_medium_id', __('Traffic medium id'));
-        $form->text('secondary_email', __('Secondary email'));
-        $form->number('resume_recieved', __('Resume recieved'));
-        $form->date('follow_up', __('Follow up'))->default(date('Y-m-d'));
-        $form->text('enquiry', __('Enquiry'));
-        $form->text('postal_code', __('Postal code'));
-        $form->number('ielts', __('Ielts'));
-        $form->number('age', __('Age'));
-        $form->text('traffic_campaign', __('Traffic campaign'));
-        $form->number('currency_id', __('Currency id'));
-        $form->text('state', __('State'));
-        $form->text('no_of_applicants', __('No of applicants'));
-        $form->text('traffic_content', __('Traffic content'));
-        $form->number('resume', __('Resume'));
-        $form->text('resume_id', __('Resume id'));
-        $form->number('hear_about_us_id', __('Hear about us id'));
-        $form->text('city', __('City'));
-        $form->number('maritial_status', __('Maritial status'));
-        $form->text('traffic_ip', __('Traffic ip'));
-        $form->text('country', __('Country'));
-        $form->date('booking_date', __('Booking date'))->default(date('Y-m-d'));
-        $form->email('email', __('Email'));
-        $form->text('address', __('Address'));
-        $form->text('enquiry_age', __('Enquiry age'));
-        $form->text('traffic_url', __('Traffic url'));
-        $form->date('appointment_date', __('Appointment date'))->default(date('Y-m-d'));
-        $form->text('website', __('Website'));
-        $form->text('fax', __('Fax'));
-        $form->text('billing_city', __('Billing city'));
-        $form->text('billing_street', __('Billing street'));
-        $form->text('billing_state', __('Billing state'));
-        $form->text('billing_postal_code', __('Billing postal code'));
-        $form->text('shipping_city', __('Shipping city'));
-        $form->text('shipping_street', __('Shipping street'));
-        $form->text('shipping_state', __('Shipping state'));
-        $form->text('shipping_postal_code', __('Shipping postal code'));
-        $form->text('employees', __('Employees'));
-        $form->text('email_type', __('Email type'));
+        })->tab('applicant information',function($form){
+          $form->select('currency_id', __('Currency id'))->options(currencies::all()->pluck('name', 'id'));
+          $form->select('maritial_status', __('Maritial status'))->options([1=>"single",2=>"maried"]);
+          $form->text('country_code', __('Country code'));
+          $form->date('birthday', __('Birthday'))->default(date('Y-m-d'));
+          $form->date('booking_date', __('Booking date'))->default(date('Y-m-d'));
+          $form->select('application_type_id', __('Application type id'))->options(application_types::all()->pluck('name', 'id'));
+          $form->text('website', __('Website'));
+          $form->text('fax', __('Fax'));
+          $form->text('billing_city', __('Billing city'));
+          $form->text('billing_street', __('Billing street'));
+          $form->text('billing_state', __('Billing state'));
+          $form->text('billing_postal_code', __('Billing postal code'));
+          $form->text('shipping_city', __('Shipping city'));
+          $form->text('shipping_street', __('Shipping street'));
+          $form->text('shipping_state', __('Shipping state'));
+          $form->text('shipping_postal_code', __('Shipping postal code'));
+          $form->text('employees', __('Employees'));
+          $form->text('email_type', __('Email type'));
+          $form->number('age', __('Age'));
+          $form->text('city', __('City'));
+          $form->text('gender', __('Gender'));
+          $form->select('nationality_id', __('Nationality id'))->options(nationality::all()->pluck('name', 'id'));
+          $form->text('prefered_office_location', __('Prefered office location'));
+          $form->text('current_location', __('Current location'));
+          $form->text('code', __('Code'));
+          $form->text('title', __('Title'));
+          $form->text('company', __('Company'));
+          $form->select('industry_id', __('Industry id'))->options(industry::all()->pluck('name', 'id'));
+          $form->date('follow_up', __('Follow up'))->default(date('Y-m-d'));
+          $form->text('enquiry', __('Enquiry'));
+          $form->text('postal_code', __('Postal code'));
+          $form->text('state', __('State'));
+          $form->text('country', __('Country'));
+          $form->text('address', __('Address'));
+          $form->text('enquiry_age', __('Enquiry age'));
+
+        })->tab('qualifications',function($form){
+          // $form->number('resume', __('Resume'));
+          $form->text('resume_id', __('Resume id'));
+          $form->select('education_qualification_id', __('Education qualification id'))->options(education_qualifications::all()->pluck('name', 'id'));
+          $form->number('ielts', __('Ielts'));
+          $form->select('resume_recieved', __('Resume recieved'))->options([0=>"yes",1=>"no"]);
+
+        })->tab('calls',function($form){
+          $form->morphMany('calls', function (Form\NestedForm $form) {
+            $form->select('sales_stage_id', __('Sales stage id'))->options(sales_stage::all()->pluck('name', 'id'));
+            $form->text('related_to', __('Related to'));
+            $form->text('call_type', __('Call type'));
+            $form->text('status', __('Status'))->default('1');
+            $form->datetime('start', __('Start'))->default(date('Y-m-d H:i:s'));
+            $form->text('owner', __('Owner'));
+            $form->text('subject', __('Subject'));
+            $form->select('reminder', __('Reminder'))->default(1)->options([0=>"yes",1=>"no"]);
+            $form->text('purpose', __('Purpose'));
+            $form->text('agenda', __('Agenda'));
+          });
+        })->tab('meetings',function($form){
+          $form->morphMany('Meetings', function (Form\NestedForm $form) {
+            $form->text('name', __('Name'));
+            $form->text('location', __('Location'));
+            $form->number('all_day', __('All day'))->default(1);
+            $form->datetime('from', __('From'))->default(date('Y-m-d H:i:s'));
+            $form->datetime('to', __('To'))->default(date('Y-m-d H:i:s'));
+            $form->number('status', __('Status'))->default(1);
+            $form->text('source', __('Source'));
+            $form->number('confirmed', __('Confirmed'))->default(1)->options([0=>"yes",1=>"no"]);
+          });
+        })->tab('tasks',function($form){
+          $form->morphMany('Tasks', function (Form\NestedForm $form) {
+            $form->text('owner', __('Owner'));
+            $form->text('subject', __('Subject'));
+            $form->date('due_date', __('Due date'))->default(date('Y-m-d'));
+            $form->text('client', __('Client'));
+            $form->text('monster_leads', __('Monster leads'));
+            $form->number('status', __('Status'));
+            $form->number('priority', __('Priority'))->default(1);
+            $form->select('reminder', __('Reminder'))->default(1)->options([0=>"yes",1=>"no"]);
+            $form->select('repeat', __('Repeat'))->default(1)->options([0=>"yes",1=>"no"]);
+            $form->text('task_source', __('Task source'));
+            $form->text('task_google_id', __('Task google id'));
+            $form->text('description', __('Description'));
+            $form->text('exchange_rate', __('Exchange rate'));
+            $form->select('currency_id', __('Currency id'))->options(currencies::all()->pluck('name', 'id'));
+          });
+        });
+
 
         return $form;
     }
