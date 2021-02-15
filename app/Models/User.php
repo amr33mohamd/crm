@@ -53,5 +53,9 @@ class User extends Authenticatable
     {
        return $this->hasOne(User::class,'invited_by','id');
      }
+     public function followers()
+     {
+        return $this->hasMany(User::class,'invited_by','id');
+      }
 
 }

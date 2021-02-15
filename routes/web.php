@@ -18,3 +18,4 @@ use Illuminate\Support\Facades\Route;
 // });
 
 Route::get('/','App\Http\Controllers\Agent\LeadsController@index');
+Route::get('/affiliate','App\Http\Controllers\Agent\AffiliateController@index');
