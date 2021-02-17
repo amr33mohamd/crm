@@ -19,3 +19,9 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/','App\Http\Controllers\Agent\LeadsController@index');
 Route::get('/affiliate','App\Http\Controllers\Agent\AffiliateController@index');
+
+Route::get('/login','App\Http\Controllers\Auth\UserController@login');
+Route::get('/login_response','App\Http\Controllers\Auth\UserController@login_response');
+
+Route::get('/register','App\Http\Controllers\Auth\UserController@register');
+Route::get('/register_response','App\Http\Controllers\Auth\UserController@register_user');
