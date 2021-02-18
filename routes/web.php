@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\Auth;
 
 /*
 |--------------------------------------------------------------------------
@@ -25,3 +26,16 @@ Route::get('/login_response','App\Http\Controllers\Auth\UserController@login_res
 
 Route::get('/register','App\Http\Controllers\Auth\UserController@register');
 Route::get('/register_response','App\Http\Controllers\Auth\UserController@register_user');
+
+Route::get('/billing-portal', function (Request $request) {
+    return Auth::user()->redirectToBillingPortal();
+});
+Auth::routes();
+
+Route::get('/portal', 'App\Http\Controllers\PaymentController@portal')->name('portal');
+Route::get('/oauth', 'App\Http\Controllers\OauthController@index')->name('oauth');
+Route::resource('/payment_methods', 'App\Http\Controllers\PaymentMethodController');
+Route::get('/subscribe/{price_id}', 'App\Http\Controllers\SubscribeController@subscribe')->name('subscribe');
+
+
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');

@@ -5,17 +5,25 @@ namespace App\Http\Controllers\Agent;
 use Illuminate\Http\Request;
 use App\Models\leads;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Auth;
+
+use App\Models\User;
+
 class LeadsController extends Controller
 {
     public function index(Request $request){
       $leads = leads::all();
-      return view('welcome',['leads'=>$leads]);
+      $user = Auth::user();
+
+
+      return $stripeCustomer = $user->createAsStripeCustomer();
+
 
     }
     public function editScreen(Request $request){
       $lead = leads::query()->where('id',request('id'));
-
-      return view('welcome',['lead'=>$lead]);
+      $user = Auth::user();
+      return;
 
     }
 
