@@ -23,6 +23,8 @@ Route::get('/affiliate','App\Http\Controllers\Agent\AffiliateController@index');
 
 Route::get('/login','App\Http\Controllers\Auth\UserController@login');
 Route::get('/login_response','App\Http\Controllers\Auth\UserController@login_response');
+Route::get('/logout','App\Http\Controllers\Auth\UserController@logout');
+
 
 Route::get('/register','App\Http\Controllers\Auth\UserController@register');
 Route::get('/register_response','App\Http\Controllers\Auth\UserController@register_user');

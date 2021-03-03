@@ -12,11 +12,11 @@ use App\Models\User;
 class LeadsController extends Controller
 {
     public function index(Request $request){
-      $leads = leads::all();
       $user = Auth::user();
+      $leads = $user->leads;
 
 
-      return $stripeCustomer = $user->createAsStripeCustomer();
+      return view('welcome',['lead'=>$lead]);
 
 
     }

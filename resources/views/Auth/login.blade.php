@@ -1,73 +1,130 @@
-@extends('layouts.app')
 
-@section('content')
-<div class="container">
-    <div class="row justify-content-center">
-        <div class="col-md-8">
-            <div class="card">
-                <div class="card-header">{{ __('Login') }}</div>
 
-                <div class="card-body">
-                    <form method="POST" action="{{ route('login') }}">
-                        @csrf
+<!doctype html>
+<html lang="en">
 
-                        <div class="form-group row">
-                            <label for="email" class="col-md-4 col-form-label text-md-right">{{ __('E-Mail Address') }}</label>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>FPB</title>
 
-                            <div class="col-md-6">
-                                <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email" autofocus>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <!-- style css -->
 
-                                @error('email')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                @enderror
-                            </div>
-                        </div>
+    <link rel="stylesheet" href="/assets/css/style.css">
+</head>
+<boyd>
+<div class="auth-page">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-xl-9 col-lg-9 col-md-12 col-sm-12">
+                <div class="card-box">
+                    <div class="row">
+                        <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12 pr-0">
+                            <div class="auth-box p-4">
+                                <div class="auth-logo mb-3">
+                                    <img src="./assets/images/auth-logo.svg">
+                                </div>
+                                <div class="auth-title mb-2">
+                                    <h2 class="mb-1">Sign in</h2>
+                                    <h3 class="mb-0">Get started with the FBP Sales Portal</h3>
+                                </div>
+                                <div class="auth-form">
+                                    <form novalidate method="POST" action="{{ route('login') }}">
+                                        @csrf
+                                        <div class="row">
+                                            <div class="col-sm">
+                                            
+                                                <div class="form-field">
+                                                    <div class="form-field__control">
+                                                        <label for="email" class="form-field__label">Email</label>
+                                                        <input id="email" type="email" class="form-field__input @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email" autofocus>
+                                                        @error('email')
+                                                            <span class="invalid-feedback" role="alert">
+                                                                <strong>{{ $message }}</strong>
+                                                            </span>
+                                                        @enderror
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-sm">
+                                                <div class="form-field mb-3">
+                                                    <div class="form-field__control">
+                                                        <label for="password" class="form-field__label">Password</label>
+                                                        <input id="password" type="password" class="form-field__input @error('password') is-invalid @enderror" name="password" required autocomplete="current-password">
 
-                        <div class="form-group row">
-                            <label for="password" class="col-md-4 col-form-label text-md-right">{{ __('Password') }}</label>
+                                                        @error('password')
+                                                            <span class="invalid-feedback" role="alert">
+                                                                <strong>{{ $message }}</strong>
+                                                            </span>
+                                                        @enderror                                                        <button class="password-show">
+                                                            <img src="./assets/images/Icon awesome-eye-slash.svg">
+                                                        </button>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="row mb-3">
+                                            <div class="col-sm">
+                                                <div class="forgot-link">
+                                                  @if (Route::has('password.request'))
 
-                            <div class="col-md-6">
-                                <input id="password" type="password" class="form-control @error('password') is-invalid @enderror" name="password" required autocomplete="current-password">
-
-                                @error('password')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                @enderror
-                            </div>
-                        </div>
-
-                        <div class="form-group row">
-                            <div class="col-md-6 offset-md-4">
-                                <div class="form-check">
-                                    <input class="form-check-input" type="checkbox" name="remember" id="remember" {{ old('remember') ? 'checked' : '' }}>
-
-                                    <label class="form-check-label" for="remember">
-                                        {{ __('Remember Me') }}
-                                    </label>
+                                                      <a class="btn btn-link" href="{{ route('password.request') }}">
+                                                          {{ __('Forgot Your Password?') }}
+                                                      </a>
+                                                  @endif
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="row mb-4">
+                                            <div class="col-sm">
+                                                <button type="submit" class="btn btn-admin w-100">Sign in</a>
+                                            </div>
+                                        </div>
+                                        <div class="row">
+                                            <div class="col-sm">
+                                                <div class="auth-line-link">
+                                                    <p class="mb-0">Don't have an account?
+                                                        <a href="/register">Sign Up!</a>
+                                                    </p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </form>
                                 </div>
                             </div>
                         </div>
-
-                        <div class="form-group row mb-0">
-                            <div class="col-md-8 offset-md-4">
-                                <button type="submit" class="btn btn-primary">
-                                    {{ __('Login') }}
-                                </button>
-
-                                @if (Route::has('password.request'))
-                                    <a class="btn btn-link" href="{{ route('password.request') }}">
-                                        {{ __('Forgot Your Password?') }}
-                                    </a>
-                                @endif
+                        <div class="col-xl-6 col-lg-6 col-md-6 col-sm-12 pl-0">
+                            <div class="login-content p-4">
+                                <div class="login-check text-center p-5">
+                                    <img src="./assets/images/login-check.svg">
+                                </div>
+                                <div class="login-text">
+                                    <p>Lorem Ipsum is simply dummy text of the printing and spesetting industry.</p>
+                                    <ul>
+                                        <li>Lorem Ipsum is simply dummy</li>
+                                        <li>Lorem Ipsum is simply dummy</li>
+                                        <li>Lorem Ipsum is simply dummy</li>
+                                    </ul>
+                                </div>
                             </div>
                         </div>
-                    </form>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
 </div>
-@endsection
+
+
+</boyd>
+<script src="/assets/js/jquery-3.5.1.min.js"></script>
+
+<!-- Bootstrap js -->
+<script src="/assets/js/bootstrap.min.js"></script>
+<script src="/assets/js/bootstrap.bundle.min.js"></script>
+
+<script src="/assets/js/form.js"></script>
+</html>
