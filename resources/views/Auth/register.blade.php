@@ -29,7 +29,7 @@
                                     <h3 class="mb-0">Get started with the FBP Sales Portal</h3>
                                 </div>
                                 <div class="auth-form">
-                                    <form novalidate method="POST" action="{{ route('register') }}">
+                                    <form novalidate method="POST" action="{{ route('register_response') }}">
                                         @csrf
 
                                         <div class="row">
@@ -37,7 +37,7 @@
                                               <div class="form-field mb-2">
                                                   <div class="form-field__control">
                                                       <label for="last-name" class="form-field__label" name="name">Name</label>
-                                                      <input id="last-name" type="text" class="form-field__input" />
+                                                      <input name="name" id="last-name" type="text" class="form-field__input" />
                                                       @error('name')
                                                           <span class="invalid-feedback" role="alert">
                                                               <strong>{{ $message }}</strong>
@@ -80,6 +80,7 @@
                                                 </div>
                                             </div>
                                         </div>
+
                                         <div class="row">
                                             <div class="col-sm">
                                                 <div class="form-field mb-2">

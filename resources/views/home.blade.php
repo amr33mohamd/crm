@@ -15,7 +15,7 @@
 
                 <div class="card-body">
                     @if (auth()->user()->subscribed('default'))
-                        You can access the dashboard from here <a target="_blank" href="/ll">;;;;</a>
+                        You can access the dashboard from here <a target="_blank" href="{{route('leads')}}">Dashboard</a>
                     @else
                         You need  to subscribe to a plan to access the dashboard
                     @endif

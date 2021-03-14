@@ -5,17 +5,18 @@ namespace App\Http\Controllers\Agent;
 use App\Models\tasks;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Models\documents;
 class SocialController extends Controller
 {
     public function index(Request $request){
       $leads = tasks::all();
-      return view('welcome',['leads'=>$leads]);
+      return view('Agent.Marketing.Marketing',['leads'=>$leads]);
 
     }
     public function editScreen(Request $request){
       $lead = tasks::query()->where('id',request('id'));
 
-      return view('welcome',['lead'=>$lead]);
+      return view('Agent.Marketing.Marketing',['lead'=>$lead]);
 
     }
 

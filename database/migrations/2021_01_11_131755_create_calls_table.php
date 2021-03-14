@@ -26,7 +26,7 @@ class CreateCallsTable extends Migration
             $table->integer('reminder')->default(1);
             $table->string('purpose')->nullable();
             $table->string('agenda')->nullable();
-            $table->morphs('callable');
+            $table->nullableMorphs('callable');
 
 
 

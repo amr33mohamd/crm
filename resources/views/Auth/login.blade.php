@@ -30,16 +30,19 @@
                                     <h3 class="mb-0">Get started with the FBP Sales Portal</h3>
                                 </div>
                                 <div class="auth-form">
-                                    <form novalidate method="POST" action="{{ route('login') }}">
+                                    <form novalidate method="POST" action="{{ route('login_response') }}">
                                         @csrf
+                                        @if($errors->any())
+                                            <div class="alert alert-danger">{{$errors->first()}}</div>
+                                        @endif
                                         <div class="row">
                                             <div class="col-sm">
-                                            
+
                                                 <div class="form-field">
                                                     <div class="form-field__control">
                                                         <label for="email" class="form-field__label">Email</label>
                                                         <input id="email" type="email" class="form-field__input @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email" autofocus>
-                                                        @error('email')
+                                                        @error('message')
                                                             <span class="invalid-feedback" role="alert">
                                                                 <strong>{{ $message }}</strong>
                                                             </span>
@@ -55,7 +58,7 @@
                                                         <label for="password" class="form-field__label">Password</label>
                                                         <input id="password" type="password" class="form-field__input @error('password') is-invalid @enderror" name="password" required autocomplete="current-password">
 
-                                                        @error('password')
+                                                        @error('message')
                                                             <span class="invalid-feedback" role="alert">
                                                                 <strong>{{ $message }}</strong>
                                                             </span>

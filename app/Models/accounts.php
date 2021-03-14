@@ -16,10 +16,7 @@ class accounts extends Model
     {
        return $this->belongsTo(leads::class,'lead_id','id');
      }
-     protected $guarded = [
-         'id',
 
-     ];
      public function currency()
      {
         return $this->belongsTo(currencies::class,'currency_id','id');
@@ -72,4 +69,8 @@ class accounts extends Model
                                  {
                                      return $this->morphMany(tasks::class, 'taskable');
                                  }
+                                 public function contacts()
+                                     {
+                                         return $this->hasMany(contacts::class, 'account_id','id');
+                                     }
 }

@@ -59,5 +59,13 @@ class User extends Authenticatable
      {
         return $this->hasMany(User::class,'invited_by','id');
       }
+      public function leads()
+      {
+         return $this->hasMany(leads::class,'user_id','id');
+       }
+       public function accounts()
+       {
+          return $this->hasMany(accounts::class,'user_id','id');
+        }
 
 }

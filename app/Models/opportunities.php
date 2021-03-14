@@ -22,6 +22,6 @@ class opportunities extends Model
       }
       public function sales_stage()
       {
-         return $this->belongsTo(sales_stages::class,'sales_stage_id','id');
+         return $this->belongsTo(sales_stage::class,'sales_stage_id','id');
        }
 }

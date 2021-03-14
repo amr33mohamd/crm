@@ -10,7 +10,7 @@ class AffiliateController extends Controller
 {
   public function index(Request $request){
     $leads = User::query()->where('invited_by',null)->with('followers.followers')->get();
-    return response()->json($leads);
+    return view('Agent.affiliate.affiliate',['leads'=>$leads]);
   }
 
 

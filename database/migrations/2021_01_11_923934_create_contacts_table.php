@@ -20,9 +20,13 @@ class CreateContactsTable extends Migration
             $table->string('billing_street')->nullable();
             $table->string('billing_state')->nullable();
             $table->string('billing_postal_code')->nullable();
+            $table->string('billing_country')->nullable();
+
             $table->string('shipping_city')->nullable();
             $table->string('shipping_street')->nullable();
             $table->string('shipping_state')->nullable();
+            $table->string('shipping_country')->nullable();
+
             $table->string('shipping_postal_code')->nullable();
             $table->string('first_name')->nullable();
             $table->string('last_name')->nullable();

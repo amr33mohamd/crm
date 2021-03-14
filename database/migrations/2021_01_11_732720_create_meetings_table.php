@@ -18,12 +18,12 @@ class CreateMeetingsTable extends Migration
             $table->string('name')->nullable();
             $table->string('location')->nullable();
             $table->integer('all_day')->default(1);
-            $table->datetime('from');
-            $table->datetime('to');
-            $table->integer('status')->default(1);
+            $table->datetime('from')->nullable();
+            $table->datetime('to')->nullable();
+            $table->string('status')->nullable();
             $table->string('source')->nullable();
             $table->integer('confirmed')->default(1);
-            $table->morphs('meetingable');
+            $table->nullableMorphs('meetingable');
 
 
 

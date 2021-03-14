@@ -6,11 +6,22 @@ use App\Models\calls;
 use App\Models\opportunities;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Models\sales_stage;
+use App\Models\accounts;
+use Illuminate\Support\Facades\Auth;
+use App\Models\leads;
+
 class CallsController extends Controller
 {
     public function index(Request $request){
-      $leads = calls::all();
-      return view('welcome',['leads'=>$leads]);
+      $leads = calls::query()->with('callable')->get();
+      $user = Auth::user();
+      $stages = sales_stage::all();
+
+      $accounts = accounts::query()->where('user_id',$user->id)->get();
+      $userLeads = leads::query()->where('user_id',$user->id)->get();
+
+      return view('Agent.activities.calls.Calls',['leads'=>$leads,'stages'=>$stages,'accounts'=>$accounts,'userLeads'=>$userLeads]);
 
     }
     public function editScreen(Request $request){
@@ -23,18 +34,47 @@ class CallsController extends Controller
     public function edit(Request $request){
       $leads = calls::all();
       $data = request();
+      $data = request()->all();
+      unset($data['_token']);
+      unset($data['callable']);
 
       $edit = calls::query()->where('id',request('id'))->update(array_merge(array_filter($data)));
+      $edit = calls::query()->where('id',request('id'))->first();
 
-      return Redirect::back();
+      $callable = explode(",",$request->callable);
+      if($callable[0] == 'account'){
+        $account = accounts::find($callable[1]);
+        $edit->callable()->associate($account);
+        $edit->save();
+      }
+      else {
+        $leadUser = leads::find($callable[1]);
+        $edit->callable()->associate($leadUser);
+        $edit->save();
+      }
+      return $edit;
 
     }
+
     public function add(Request $request){
       $leads = calls::all();
-      $data = request();
+      $data = request()->all();
+      unset($data['_token']);
+      unset($data['callable']);
 
       $add = calls::query()->create(array_merge(array_filter($data)));
-
+      $callable = explode(",",$request->callable);
+      if($callable[0] == 'account'){
+        $account = accounts::find($callable[1]);
+        $add->callable()->associate($account);
+        $add->save();
+      }
+      else {
+        $leadUser = leads::find($callable[1]);
+        $add->callable()->associate($leadUser);
+        $add->save();
+      }
+      return $add;
     }
     public function delete(Request $request){
        $auth = Auth::user();
@@ -42,6 +82,6 @@ class CallsController extends Controller
        $leads = calls::find($request->id)->delete();
 
 
-       return Redirect::back();
+       return redirect('/calls');
    }
 }

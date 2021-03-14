@@ -25,11 +25,11 @@ class UserController extends Controller
     $user = User::create([
          'email'    => $request->email,
          'password' => $request->password,
-         'username'=>$request->username
+         'username'=>$request->name
      ]);
   //      $user->sendEmailVerificationNotification();
 
-        return $user;
+  return redirect()->route('home');
     }
     public  function Login(Request $request)
     {
@@ -45,7 +45,7 @@ class UserController extends Controller
       if (! $token = auth()->attempt($credentials)) {
         return Redirect::back()->withErrors(['message'=>'wrong email or password']);
       }else {
-        return redirect()->intended();
+        return redirect()->route('home');
       }
 
     }
@@ -53,7 +53,7 @@ class UserController extends Controller
     public function logout(){
       Auth::logout();
 
-    return Redirect::back();
+    return redirect('/');
     }
 
 }

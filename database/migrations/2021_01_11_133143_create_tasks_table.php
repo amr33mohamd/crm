@@ -20,7 +20,7 @@ class CreateTasksTable extends Migration
             $table->date('due_date')->nullable();
             $table->string('client')->nullable();
             $table->string('monster_leads')->nullable();
-            $table->integer('status')->default(0);
+            $table->string('status')->nullable();
             $table->integer('priority')->default(1);
             $table->integer('reminder')->default(1);
             $table->integer('repeat')->default(1);
@@ -30,7 +30,7 @@ class CreateTasksTable extends Migration
             $table->string('exchange_rate')->nullable();
             $table->unsignedBigInteger('currency_id')->unsigned()->nullable();
             $table->foreign('currency_id')->references('id')->on('currencies')->onDelete('set null');
-            $table->morphs('taskable') ;
+            $table->nullableMorphs('taskable') ;
 
 
             $table->timestamps();

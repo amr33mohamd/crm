@@ -85,6 +85,8 @@ class CreateLeadsTable extends Migration
             $table->string('shipping_postal_code')->nullable();
             $table->string('employees')->nullable();
             $table->string('email_type')->nullable();
+            $table->enum('lead_owner', ["Administrator", "FBP DWC","FBP Sales","FBP Universal","FBP Malaysia","FBP user"]);
+
 
 
 

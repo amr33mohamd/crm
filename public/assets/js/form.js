@@ -13,6 +13,9 @@ const setActive = (el, active) => {
   [].forEach.call(
     document.querySelectorAll(".form-field__input, .form-field__textarea"),
     (el) => {
+      el.value === ""
+        ? el.classList.remove("form-field--is-active")
+        : el.classList.add("form-field--is-active");
       el.onblur = () => {
         setActive(el, false);
       };
