@@ -145,7 +145,7 @@ Route::get('/payments', [App\Http\Controllers\Agent\PaymentsController::class, '
 
 ////////////////////
 Route::get('/affiliate', [App\Http\Controllers\Agent\AffiliateController::class, 'index'])->name('affiliate');
-
+ 
 
 ////////////////////
 Route::get('/employees', [App\Http\Controllers\Agent\EmployeesController::class, 'index'])->name('employees');
