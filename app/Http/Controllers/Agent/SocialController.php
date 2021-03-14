@@ -10,7 +10,7 @@ class SocialController extends Controller
 {
     public function index(Request $request){
       $leads = tasks::all();
-      return view('Agent.Marketing.Marketing',['leads'=>$leads]);
+      return view('Agent.marketing.marketing',['leads'=>$leads]);
 
     }
     public function editScreen(Request $request){

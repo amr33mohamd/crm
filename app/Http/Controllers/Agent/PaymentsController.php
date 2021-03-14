@@ -9,7 +9,7 @@ class PaymentsController extends Controller
 {
   public function index(Request $request){
     $leads = leads::all();
-    return view('Agent.Payments.Payments',['leads'=>$leads]);
+    return view('Agent.payments.payments',['leads'=>$leads]);
 
   }
 }

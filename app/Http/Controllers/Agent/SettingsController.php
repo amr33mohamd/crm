@@ -10,7 +10,7 @@ class SettingsController extends Controller
 {
     public function index(Request $request){
       $leads = tasks::all();
-      return view('Agent.Settings.Settings',['leads'=>$leads]);
+      return view('Agent.settings.settings',['leads'=>$leads]);
 
     }
     public function editScreen(Request $request){
