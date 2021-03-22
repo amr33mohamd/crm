@@ -27,6 +27,8 @@ class CreateCallsTable extends Migration
             $table->string('purpose')->nullable();
             $table->string('agenda')->nullable();
             $table->nullableMorphs('callable');
+            $table->unsignedBigInteger('user_id')->unsigned();
+            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
 
 
 

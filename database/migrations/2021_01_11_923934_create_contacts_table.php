@@ -26,6 +26,8 @@ class CreateContactsTable extends Migration
             $table->string('shipping_street')->nullable();
             $table->string('shipping_state')->nullable();
             $table->string('shipping_country')->nullable();
+            $table->unsignedBigInteger('user_id')->unsigned();
+            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
 
             $table->string('shipping_postal_code')->nullable();
             $table->string('first_name')->nullable();

@@ -31,6 +31,8 @@ class CreateTasksTable extends Migration
             $table->unsignedBigInteger('currency_id')->unsigned()->nullable();
             $table->foreign('currency_id')->references('id')->on('currencies')->onDelete('set null');
             $table->nullableMorphs('taskable') ;
+            $table->unsignedBigInteger('user_id')->unsigned();
+            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
 
 
             $table->timestamps();

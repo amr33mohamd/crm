@@ -37,7 +37,15 @@
 
     <!-- Setting Tab Section Start -->
     <div class="tab-v-box-2 setting-box">
+      <form action="{{route('settingsAction')}}" method="post">
+        @csrf
         <div class="container-fluid">
+          <div class="row">
+              <div class="col-lg d-flex justify-content-end" style="padding:10px">
+                  <a href="#" class="btn-admin-default">Cancel</a>
+                  <button type="submit" class="btn-admin-primary ml-3">Save</a>
+              </div>
+          </div>
             <div class="row">
                 <div class="col-xl-2 col-lg-3 tab-btn-box pr-2">
                     <div class="nav flex-column nav-pills card-box p-2" id="v-pills-tab" role="tablist"
@@ -73,7 +81,7 @@
                                             <div class="form-field">
                                                 <div class="form-field__control">
                                                     <label for="1" class="form-field__label">Username</label>
-                                                    <input id="1" type="text" class="form-field__input"
+                                                    <input id="1" type="text" name="username" value="{{$user->username}}" class="form-field__input"
                                                         placeholder="Admin" />
                                                 </div>
                                             </div>
@@ -82,7 +90,7 @@
                                             <div class="form-field">
                                                 <div class="form-field__control">
                                                     <label for="2" class="form-field__label">First Name</label>
-                                                    <input id="2" type="text" class="form-field__input"
+                                                    <input id="2" type="text" name="first_name" value="{{$user->first_name}}" class="form-field__input"
                                                         placeholder="First Name" />
                                                 </div>
                                             </div>
@@ -91,7 +99,7 @@
                                             <div class="form-field">
                                                 <div class="form-field__control">
                                                     <label for="3" class="form-field__label">Last Name</label>
-                                                    <input id="3" type="text" class="form-field__input"
+                                                    <input id="3" type="text" name="last_name" value="{{$user->last_name}}" class="form-field__input"
                                                         placeholder="Last Name" />
                                                 </div>
                                             </div>
@@ -99,42 +107,46 @@
                                         <div class="col-lg px-2">
                                             <div class="form-field">
                                                 <div class="form-field__control">
-                                                    <label for="4" class="form-field__label">Address</label>
-                                                    <select id="4" name="country" class="form-field__input">
-                                                        <option value="">option</option>
-                                                        <option value="">lorem ipsum</option>
-                                                        <option value="">lorem ipsum</option>
-                                                        <option value="">lorem ipsum</option>
-                                                    </select>
-                                                    <div class="form-dropdown-icon">
-                                                        <img src="./assets/images/form-drop-down.svg" />
-                                                    </div>
+                                                    <label for="4" class="form-field__label">address street</label>
+                                                    <input id="4" type="text" name="address_street" value="{{$user->address_street}}" class="form-field__input"
+                                                        placeholder="address street" />
                                                 </div>
                                             </div>
                                         </div>
                                         <div class="col-lg px-2">
-                                            <div class="form-field">
-                                                <div class="form-field__control">
-                                                    <label for="5" class="form-field__label">Status</label>
-                                                    <select id="5" name="country" class="form-field__input">
-                                                        <option value="">System Administrator User</option>
-                                                        <option value="">lorem ipsum</option>
-                                                        <option value="">lorem ipsum</option>
-                                                        <option value="">lorem ipsum</option>
-                                                    </select>
-                                                    <div class="form-dropdown-icon">
-                                                        <img src="./assets/images/form-drop-down.svg" />
-                                                    </div>
-                                                </div>
-                                            </div>
+                                          <div class="form-field">
+                                              <div class="form-field__control">
+                                                  <label for="5" class="form-field__label">address city</label>
+                                                  <input id="5" type="text" name="address_city" value="{{$user->address_city}}" class="form-field__input"
+                                                      placeholder="address city" />
+                                              </div>
+                                          </div>
                                         </div>
                                     </div>
                                     <div class="row mx-0">
+                                      <div class="col-lg px-2">
+                                        <div class="form-field">
+                                            <div class="form-field__control">
+                                                <label for="20" class="form-field__label">address state</label>
+                                                <input id="20" type="text" name="address_state" value="{{$user->address_state}}" class="form-field__input"
+                                                    placeholder="address state" />
+                                            </div>
+                                        </div>
+                                      </div>
+                                      <div class="col-lg px-2">
+                                        <div class="form-field">
+                                            <div class="form-field__control">
+                                                <label for="10" class="form-field__label">postal code</label>
+                                                <input id="10" type="text" name="address_code" value="{{$user->address_code}}" class="form-field__input"
+                                                    placeholder="postal code" />
+                                            </div>
+                                        </div>
+                                      </div>
                                         <div class="col-lg px-2">
                                             <div class="form-field other-field">
                                                 <div class="form-field__control">
                                                     <label for="6" class="form-field__label">Photo</label>
-                                                    <input id="6" type="file" class="other-field" />
+                                                    <input id="6" type="file" name="image" class="other-field" />
                                                 </div>
                                             </div>
                                         </div>
@@ -143,7 +155,7 @@
                                                 <div class="form-field__control">
                                                     <label for="7" class="form-field__label">Two Factor
                                                         Authentication:</label>
-                                                    <input type="checkbox" class=" m-0 mt-1" id="7">
+                                                    <input type="checkbox" name="two_factor_auth" class=" m-0 mt-1" id="7">
                                                 </div>
                                             </div>
                                         </div>
@@ -152,12 +164,10 @@
                                                 <div class="form-field__control">
                                                     <label for="8" class="form-field__label">Referals Link</label>
                                                     <input id="8" type="text" class="form-field__input"
-                                                        placeholder="http://www.fbpsales.com/Ashwin&=5421687" />
+                                                        value="http://www.fbpsales.com/id={{$user->id}}" />
                                                 </div>
                                             </div>
                                         </div>
-                                        <div class="col-lg px-2"></div>
-                                        <div class="col-lg px-2"></div>
                                     </div>
                                 </div>
                             </div>
@@ -169,37 +179,12 @@
                                 </div>
                                 <div class="setting-form-box">
                                     <div class="row mx-0">
-                                        <div class="col-lg px-2">
-                                            <div class="form-field">
-                                                <div class="form-field__control">
-                                                    <label for="9" class="form-field__label">Employee Status</label>
-                                                    <select id="9" name="country" class="form-field__input">
-                                                        <option value="">Employee Status</option>
-                                                        <option value="">lorem ipsum</option>
-                                                        <option value="">lorem ipsum</option>
-                                                        <option value="">lorem ipsum</option>
-                                                    </select>
-                                                    <div class="form-dropdown-icon">
-                                                        <img src="./assets/images/form-drop-down.svg" />
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="col-lg px-2">
-                                            <div class="form-field other-field">
-                                                <div class="form-field__control">
-                                                    <label for="10" class="form-field__label">Display Employee
-                                                        Record</label>
-                                                    <input id="10" type="checkbox"
-                                                        class=" m-0 mt-1">
-                                                </div>
-                                            </div>
-                                        </div>
+
                                         <div class="col-lg px-2">
                                             <div class="form-field">
                                                 <div class="form-field__control">
                                                     <label for="11" class="form-field__label">Job Title</label>
-                                                    <input id="11" type="text" class="form-field__input"
+                                                    <input id="11" type="text" name="job_title" value="{{$user->job_title}}" class="form-field__input"
                                                         placeholder="Job Title" />
                                                 </div>
                                             </div>
@@ -207,8 +192,8 @@
                                         <div class="col-lg px-2">
                                             <div class="form-field">
                                                 <div class="form-field__control">
-                                                    <label for="12" class="form-field__label">Work Phone</label>
-                                                    <input id="12" type="text" class="form-field__input"
+                                                    <label for="12" class="form-field__label">Description</label>
+                                                    <input id="12" type="text" name="description" value="{{$user->description}}" class="form-field__input"
                                                         placeholder="Work Phone" />
                                                 </div>
                                             </div>
@@ -217,7 +202,7 @@
                                             <div class="form-field">
                                                 <div class="form-field__control">
                                                     <label for="13" class="form-field__label">Mobile</label>
-                                                    <input id="13" type="text" class="form-field__input"
+                                                    <input id="13" type="number" name="mobile" value="{{$user->mobile}}" class="form-field__input"
                                                         placeholder="Mobile" />
                                                 </div>
                                             </div>
@@ -228,7 +213,7 @@
                                             <div class="form-field">
                                                 <div class="form-field__control">
                                                     <label for="14" class="form-field__label">Other Phone</label>
-                                                    <input id="14" type="text" class="form-field__input"
+                                                    <input id="14" type="number" name="other_phone" value="{{$user->other_phone}}" class="form-field__input"
                                                         placeholder="Other Phone" />
                                                 </div>
                                             </div>
@@ -237,38 +222,18 @@
                                             <div class="form-field">
                                                 <div class="form-field__control">
                                                     <label for="15" class="form-field__label">Department</label>
-                                                    <input id="15" type="text" class="form-field__input"
+                                                    <input id="15" type="text" name="department" value="{{$user->department}}" class="form-field__input"
                                                         placeholder="Department" />
                                                 </div>
                                             </div>
                                         </div>
-                                        <div class="col-lg px-2">
-                                            <div class="form-field">
-                                                <div class="form-field__control">
-                                                    <label for="16" class="form-field__label">Assigned to</label>
-                                                    <select id="16" name="country" class="form-field__input">
-                                                        <option value="">Option</option>
-                                                        <option value="">lorem ipsum</option>
-                                                        <option value="">lorem ipsum</option>
-                                                        <option value="">lorem ipsum</option>
-                                                    </select>
-                                                    <div class="form-dropdown-icon">
-                                                        <img src="./assets/images/form-drop-down.svg" />
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="col-lg px-2 mb-3">
-                                            <button class="btn-primary-admin mr-2"><img
-                                                    src="./assets/images/form-search-white.svg" /></button>
-                                            <button class="btn-danger-admin"><img
-                                                    src="./assets/images/close-white.svg" /></button>
-                                        </div>
+
+
                                         <div class="col-lg px-2">
                                             <div class="form-field">
                                                 <div class="form-field__control">
                                                     <label for="17" class="form-field__label">Fax</label>
-                                                    <input id="17" type="text" class="form-field__input"
+                                                    <input id="17" type="number" name="fax" value="{{$user->fax}}" class="form-field__input"
                                                         placeholder="Fax" />
                                                 </div>
                                             </div>
@@ -279,7 +244,7 @@
                                             <div class="form-field">
                                                 <div class="form-field__control">
                                                     <label for="18" class="form-field__label">Home Phone</label>
-                                                    <input id="18" type="text" class="form-field__input"
+                                                    <input id="18" type="number" name="home_phone" value="{{$user->home_phone}}" class="form-field__input"
                                                         placeholder="Home Phone" />
                                                 </div>
                                             </div>
@@ -288,87 +253,23 @@
                                             <div class="form-field">
                                                 <div class="form-field__control">
                                                     <label for="19" class="form-field__label">IM Type</label>
-                                                    <select id="19" name="country" class="form-field__input">
-                                                        <option value="">Option</option>
-                                                        <option value="">lorem ipsum</option>
-                                                        <option value="">lorem ipsum</option>
-                                                        <option value="">lorem ipsum</option>
-                                                    </select>
-                                                    <div class="form-dropdown-icon">
-                                                        <img src="./assets/images/form-drop-down.svg" />
-                                                    </div>
+                                                    <input id="19" type="text" name="im_type" value="{{$user->im_type}}" class="form-field__input"
+                                                        placeholder="Home Phone" />
                                                 </div>
                                             </div>
                                         </div>
                                         <div class="col-lg px-2">
                                             <div class="form-field">
                                                 <div class="form-field__control">
-                                                    <label for="20" class="form-field__label">IM Name</label>
-                                                    <input id="20" type="text" class="form-field__input"
+                                                    <label for="50" class="form-field__label">IM Name</label>
+                                                    <input id="50" name="im_name" value="{{$user->im_name}}" type="text" class="form-field__input"
                                                         placeholder="IM Name" />
                                                 </div>
                                             </div>
                                         </div>
-                                        <div class="col-lg px-2">
-                                            <div class="form-field">
-                                                <div class="form-field__control">
-                                                    <label for="21" class="form-field__label">Address Street</label>
-                                                    <input id="21" type="text" class="form-field__input"
-                                                        placeholder="Address Street" />
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="col-lg px-2">
-                                            <div class="form-field">
-                                                <div class="form-field__control">
-                                                    <label for="22" class="form-field__label">Address City</label>
-                                                    <input id="22" type="text" class="form-field__input"
-                                                        placeholder="Address City" />
-                                                </div>
-                                            </div>
-                                        </div>
+
                                     </div>
-                                    <div class="row mx-0">
-                                        <div class="col-lg px-2">
-                                            <div class="form-field">
-                                                <div class="form-field__control">
-                                                    <label for="23" class="form-field__label">Address
-                                                        State/Region</label>
-                                                    <input id="23" type="text" class="form-field__input"
-                                                        placeholder="Address State/Region" />
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="col-lg px-2">
-                                            <div class="form-field">
-                                                <div class="form-field__control">
-                                                    <label for="24" class="form-field__label">Address Postal
-                                                        Code</label>
-                                                    <input id="24" type="text" class="form-field__input"
-                                                        placeholder="Address Postal Code" />
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="col-lg px-2">
-                                            <div class="form-field">
-                                                <div class="form-field__control">
-                                                    <label for="25" class="form-field__label">Address
-                                                        Country</label>
-                                                    <input id="25" type="text" class="form-field__input"
-                                                        placeholder="Address Country" />
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="col-lg-5 px-2">
-                                            <div class="form-field">
-                                                <div class="form-field__control">
-                                                    <label for="26" class="form-field__label">Description</label>
-                                                    <input id="26" type="text" class="form-field__input"
-                                                        placeholder="Description" />
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
+
                                 </div>
                             </div>
                         </div>
@@ -851,6 +752,7 @@
                 </div>
             </div>
         </div>
+      </form>
     </div>
     <!-- Setting Tab Section End -->
 </main>
@@ -861,151 +763,13 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js"></script>
 <script>
 
-$(document).ready(function() {
-$('#element').toast('show')
-// Setup - add a text input to each footer cell
-$('#example thead tr').clone(true).appendTo( '#example thead' );
-$('#example thead tr:eq(1) th').each( function (i) {
-    if(i != 0){
-    var title = $(this).text();
-    $(this).html( '<input type="text"  class="form-control filter" placeholder="Search '+title+'" />' );
-
-    $( 'input', this ).on( 'keyup change', function () {
-        if ( table.column(i).search() !== this.value ) {
-            table
-                .column(i)
-                .search( this.value )
-                .draw();
-        }
-    } );
-  }
-  else{
-    $(this).html( '');
-  }
-} );
-
-
-
-$('#myInputTextField').on('keyup change',()=>{
-  console.log($('#myInputTextField').val())
-      table.search(''+$('#myInputTextField').val()).draw() ;
-})
-
-$(".filter").hide(); // hidden search input
-
-$("#filter").click(()=>{
-$('.filter').toggle(
-  function () {
-    $(".filter").css({display: "none !important"});
-}, function () {
-
-    $(".filter").css({display: "block !important"});
-});
-})
 
 
 
 
-var table = $('#example').DataTable( {
-    orderCellsTop: true,
-    fixedHeader: false,
-    searching:true
-} );
-
-} );
-
-const app = new Vue({
-    el: '#app',
-
-    data() {
-      return {
-        leads: {!! json_encode($leads) !!},
-        editing:0,
-        current_lead:{},
-
-      }
-    },
-
-    created() {
-      // console.log(JSON.stringify(this.leads[0]))
-      $('#schedule-a-call').on('hidden.bs.modal', function (e) {
-        app.editing = 0;
-        app.current_lead = {};
-      })
-      $('#schedule-a-call').on('show.bs.modal', function (e) {
-        $('.form-field__input').each(function() {
-          if ($(this).val() != ""  ) {
-            $(this).parent().parent().addClass('form-field--is-active');
-          }
-          else {
-            $(this).parent().parent().removeClass('form-field--is-active');
-          }
-        });
-      })
-      $('#callForm').ajaxForm((response)=> {
-        if(app.editing == 1){
-          app.editLead(response);
-          app.editing = 0;
-          console.log(response)
-          $('#schedule-a-call').modal('hide');
-        }
-        else {
-          app.addLead(response);
-          $('#schedule-a-call').modal('hide');
-        }
-                 // alert(JSON.stringify(response))
-             });
-    },
-
-    methods: {
-        setLead(lead) {
-          this.current_lead = lead;
-          this.editing = 1;
-           },
-           addLead(lead){
-             this.leads.push(lead);
-           },
-           editLead(data) {
-
-             let obj = app.leads.find(f=>f.id==data.id);
-              if(obj){
-                obj.agenda = data.agenda;
-                obj.call_type = data.call_type;
-                obj.callable = data.callable;
-                obj.callable_id = data.callable_id;
-                obj.callable_type = data.callable_type;
-                obj.created_at = data.created_at;
-                obj.id = data.id;
-                obj.purpose = data.purpose;
-                obj.related_to = data.related_to;
-                obj.reminder = data.reminder;
-                obj.sales_stage_id = data.sales_stage_id;
-                obj.start = data.start;
-                obj.status = data.status;
-                obj.subject = data.subject;
 
 
-              }
-              },
 
-
-        addMessage(message) {
-            axios.post('/messages', {
-                message
-            }).then(response => {
-                this.messages.push({
-                    message: response.data.message.message,
-                    user: response.data.user
-                });
-            });
-        },
-
-        sendMessage() {
-            this.addMessage(this.newMessage);
-            this.newMessage = '';
-        }
-    }
-});
 $(document).ready(function() {
     $('.js-example-basic-single').select2();
 });

@@ -104,7 +104,6 @@
                                             <td>
                                                 <div class="select">
                                                     <input type="checkbox">
-                                                    <h1>@{{JSON.stringify(lead)}}<h1>
 
                                                 </div>
                                             </td>
@@ -358,13 +357,7 @@ $('.filter').toggle(
 
 
 
-var table = $('#example').DataTable( {
-    orderCellsTop: true,
-    fixedHeader: false,
-    searching:true
-} );
 
-} );
 
 const app = new Vue({
     el: '#app',
@@ -470,5 +463,6 @@ $('.form-field__input').each(function() {
     $(this).parent().parent().removeClass('form-field--is-active');
   }
 });
+})
 </script>
 @endpush

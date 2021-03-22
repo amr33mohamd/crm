@@ -3,6 +3,8 @@
 
 @section('content')
 <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
+@livewireStyles
+
 <style>
 .select2-container--default .select2-selection--single{
   height: 45px !important;
@@ -11,14 +13,15 @@
 
 
 </style>
+
 <!-- Page Body Start -->
-<main class="pb-3">
+<main class="pb-3" >
     <!-- Page Title and Breadcrumb Start -->
     <div class="page-title-breadcrumb my-3">
         <div class="container-fluid">
             <div class="row">
-                <div class="col">
-                    <div class="page-title">
+                <div class="col" wire:click="add_payment">
+                    <div class="page-title" >
                         Finance Summary
                     </div>
                 </div>
@@ -116,1785 +119,14 @@
             </div>
         </div>
     </section>
+
+
+    <livewire:payments-table  />
+
     <!-- Table Section Start -->
-    <div class="admin-table">
-        <div class="container-fluid">
-            <div class="row admin-table-header">
-                <div class="col-auto admin-table-header-box">
-                    <div class="row m-0">
-                        <div class="top-heading mb-1">
-                            <h2>Milestone</h2>
-                            <img src="assets/images/question-circle.svg" class="ml-2">
-                        </div>
-                    </div>
-                    <div class="row m-0">
-                        <ul class="admin-table-info">
-                            <li class="mr-1">Viewing (13)</li>
-                            <li>Record (s)</li>
-                        </ul>
-                    </div>
-                </div>
-                <div class="col admin-table-filter-box">
-                    <div class="admin-table-filter d-flex justify-content-end align-items-center">
-                        <button class="admin-table-btn admin-table-btn-add mr-3"><img class="mr-2"
-                                src="./assets/images/table-add.svg">Add</button>
-                        <button class="admin-table-btn mr-3"><img class="mr-2"
-                                src="./assets/images/table-filter.svg">Filter</button>
-                        <button class="admin-table-btn mr-3"><img class="mr-2"
-                                src="./assets/images/table-export.svg">Export</button>
-                        <a href="./step-1.html" class="admin-table-btn mr-3"><img class="mr-2"
-                                src="./assets/images/table-import.svg">Import</a>
-                        <div class="table-search">
-                            <img src="./assets/images/table-search.svg">
-                            <input type="text" placeholder="Search …">
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <section class="profile-content mt-3">
-                <div class="row">
-                    <div class="col-md-12 mb-3">
-                        <div class="card-box p-3">
-                            <div class="tab-h-box">
-                                <ul class="nav nav-tabs" id="myTab" role="tablist">
-                                    <li class="nav-item">
-                                        <a class="nav-link active" id="milestone-tab" data-toggle="tab" href="#milestone"
-                                            role="tab" aria-controls="milestone" aria-selected="true">Milestone</a>
-                                    </li>
-                                    <li class="nav-item">
-                                        <a class="nav-link" id="wallet-tab" data-toggle="tab" href="#wallet"
-                                            role="tab" aria-controls="wallet" aria-selected="false">Wallet</a>
-                                    </li>
-                                    <li class="nav-item">
-                                        <a class="nav-link " id="invoices-tab" data-toggle="tab" href="#invoices"
-                                            role="tab" aria-controls="invoices" aria-selected="false">Invoices</a>
-                                    </li>
-                                    <li class="nav-item">
-                                        <a class="nav-link " id="commission-tab" data-toggle="tab" href="#commission"
-                                            role="tab" aria-controls="commission" aria-selected="false">Commission</a>
-                                    </li>
-                                    <li class="nav-item">
-                                        <a class="nav-link " id="client-portal-tab" data-toggle="tab" href="#client-portal" role="tab"
-                                            aria-controls="client-portal" aria-selected="false">Client Portal</a>
-                                    </li>
-                                </ul>
-                                <div class="tab-content" id="myTabContent">
-                                    <div class="tab-pane fade show active" id="milestone" role="tabpanel"
-                                        aria-labelledby="finance-tab">
-                                        <!-- Table Section Start -->
-                                        <div class="admin-table finance-table">
-                                            <div class="row admin-table-body mt-3">
-                                                <div class="col">
-                                                    <div class="table-responsive">
-                                                        <table class="table table-sm">
-                                                            <thead>
-                                                                <tr>
-                                                                    <th scope="col">Payment ID</th>
-                                                                    <th scope="col">Client ID</th>
-                                                                    <th scope="col">Client name</th>
-                                                                    <th scope="col">Milestone</th>
-                                                                    <th scope="col">Status</th>
-                                                                    <th scope="col">Due Date</th>
-                                                                    <th scope="col">Amount</th>
-                                                                    <th scope="col"></th>
-                                                                </tr>
-                                                            </thead>
-                                                            <tbody>
-                                                                <tr>
-                                                                    <td>PY-135431</td>
-                                                                    <td>AS-5462132</td>
-                                                                    <td>Ashwin Jayaraman</td>
-                                                                    <td>Agent Fees</td>
-                                                                    <td class="red-color">
-                                                                        <img src="./assets/images/form-drop-down.svg" class="mr-2"/>
-                                                                        Overdue
-                                                                    </td>
-                                                                    <td>98 days due</td>
-                                                                    <td>$134,546</td>
-                                                                    <td>
-                                                                        <div class="table-action-btn">
-                                                                            <a href="#" class="ml-3">
-                                                                                <img src="./assets/images/table-download-btn.svg"/>
-                                                                            </a>
-                                                                            <a href="#" class="ml-3">
-                                                                                <img src="./assets/images/table-edit-btn.svg"/>
-                                                                            </a>
-                                                                            <a href="#" class="ml-3">
-                                                                                <img src="./assets/images/table-delete-btn.svg"/>
-                                                                            </a>
-                                                                        </div>
-                                                                    </td>
-                                                                </tr>
-                                                                <tr>
-                                                                    <td>PY-135431</td>
-                                                                    <td>AS-5462132</td>
-                                                                    <td>Ashwin Jayaraman</td>
-                                                                    <td>Agent Fees</td>
-                                                                    <td class="red-color">
-                                                                        <img src="./assets/images/form-drop-down.svg" class="mr-2"/>
-                                                                        Overdue
-                                                                    </td>
-                                                                    <td>98 days due</td>
-                                                                    <td>$134,546</td>
-                                                                    <td>
-                                                                        <div class="table-action-btn">
-                                                                            <a href="#" class="ml-3">
-                                                                                <img src="./assets/images/table-download-btn.svg"/>
-                                                                            </a>
-                                                                            <a href="#" class="ml-3">
-                                                                                <img src="./assets/images/table-edit-btn.svg"/>
-                                                                            </a>
-                                                                            <a href="#" class="ml-3">
-                                                                                <img src="./assets/images/table-delete-btn.svg"/>
-                                                                            </a>
-                                                                        </div>
-                                                                    </td>
-                                                                </tr>
-                                                                <tr>
-                                                                    <td>PY-135431</td>
-                                                                    <td>AS-5462132</td>
-                                                                    <td>Ashwin Jayaraman</td>
-                                                                    <td>Agent Fees</td>
-                                                                    <td class="red-color">
-                                                                        <img src="./assets/images/form-drop-down.svg" class="mr-2"/>
-                                                                        Overdue
-                                                                    </td>
-                                                                    <td>98 days due</td>
-                                                                    <td>$134,546</td>
-                                                                    <td>
-                                                                        <div class="table-action-btn">
-                                                                            <a href="#" class="ml-3">
-                                                                                <img src="./assets/images/table-download-btn.svg"/>
-                                                                            </a>
-                                                                            <a href="#" class="ml-3">
-                                                                                <img src="./assets/images/table-edit-btn.svg"/>
-                                                                            </a>
-                                                                            <a href="#" class="ml-3">
-                                                                                <img src="./assets/images/table-delete-btn.svg"/>
-                                                                            </a>
-                                                                        </div>
-                                                                    </td>
-                                                                </tr>
-                                                                <tr>
-                                                                    <td>PY-135431</td>
-                                                                    <td>AS-5462132</td>
-                                                                    <td>Ashwin Jayaraman</td>
-                                                                    <td>Agent Fees</td>
-                                                                    <td class="red-color">
-                                                                        <img src="./assets/images/form-drop-down.svg" class="mr-2"/>
-                                                                        Overdue
-                                                                    </td>
-                                                                    <td>98 days due</td>
-                                                                    <td>$134,546</td>
-                                                                    <td>
-                                                                        <div class="table-action-btn">
-                                                                            <a href="#" class="ml-3">
-                                                                                <img src="./assets/images/table-download-btn.svg"/>
-                                                                            </a>
-                                                                            <a href="#" class="ml-3">
-                                                                                <img src="./assets/images/table-edit-btn.svg"/>
-                                                                            </a>
-                                                                            <a href="#" class="ml-3">
-                                                                                <img src="./assets/images/table-delete-btn.svg"/>
-                                                                            </a>
-                                                                        </div>
-                                                                    </td>
-                                                                </tr>
-                                                                <tr>
-                                                                    <td>PY-135431</td>
-                                                                    <td>AS-5462132</td>
-                                                                    <td>Ashwin Jayaraman</td>
-                                                                    <td>Agent Fees</td>
-                                                                    <td class="red-color">
-                                                                        <img src="./assets/images/form-drop-down.svg" class="mr-2"/>
-                                                                        Overdue
-                                                                    </td>
-                                                                    <td>98 days due</td>
-                                                                    <td>$134,546</td>
-                                                                    <td>
-                                                                        <div class="table-action-btn">
-                                                                            <a href="#" class="ml-3">
-                                                                                <img src="./assets/images/table-download-btn.svg"/>
-                                                                            </a>
-                                                                            <a href="#" class="ml-3">
-                                                                                <img src="./assets/images/table-edit-btn.svg"/>
-                                                                            </a>
-                                                                            <a href="#" class="ml-3">
-                                                                                <img src="./assets/images/table-delete-btn.svg"/>
-                                                                            </a>
-                                                                        </div>
-                                                                    </td>
-                                                                </tr>
-                                                                <tr>
-                                                                    <td>PY-135431</td>
-                                                                    <td>AS-5462132</td>
-                                                                    <td>Ashwin Jayaraman</td>
-                                                                    <td>Agent Fees</td>
-                                                                    <td class="red-color">
-                                                                        <img src="./assets/images/form-drop-down.svg" class="mr-2"/>
-                                                                        Overdue
-                                                                    </td>
-                                                                    <td>98 days due</td>
-                                                                    <td>$134,546</td>
-                                                                    <td>
-                                                                        <div class="table-action-btn">
-                                                                            <a href="#" class="ml-3">
-                                                                                <img src="./assets/images/table-download-btn.svg"/>
-                                                                            </a>
-                                                                            <a href="#" class="ml-3">
-                                                                                <img src="./assets/images/table-edit-btn.svg"/>
-                                                                            </a>
-                                                                            <a href="#" class="ml-3">
-                                                                                <img src="./assets/images/table-delete-btn.svg"/>
-                                                                            </a>
-                                                                        </div>
-                                                                    </td>
-                                                                </tr>
-                                                                <tr>
-                                                                    <td>PY-135431</td>
-                                                                    <td>AS-5462132</td>
-                                                                    <td>Ashwin Jayaraman</td>
-                                                                    <td>Agent Fees</td>
-                                                                    <td class="red-color">
-                                                                        <img src="./assets/images/form-drop-down.svg" class="mr-2"/>
-                                                                        Overdue
-                                                                    </td>
-                                                                    <td>98 days due</td>
-                                                                    <td>$134,546</td>
-                                                                    <td>
-                                                                        <div class="table-action-btn">
-                                                                            <a href="#" class="ml-3">
-                                                                                <img src="./assets/images/table-download-btn.svg"/>
-                                                                            </a>
-                                                                            <a href="#" class="ml-3">
-                                                                                <img src="./assets/images/table-edit-btn.svg"/>
-                                                                            </a>
-                                                                            <a href="#" class="ml-3">
-                                                                                <img src="./assets/images/table-delete-btn.svg"/>
-                                                                            </a>
-                                                                        </div>
-                                                                    </td>
-                                                                </tr>
-                                                                <tr>
-                                                                    <td>PY-135431</td>
-                                                                    <td>AS-5462132</td>
-                                                                    <td>Ashwin Jayaraman</td>
-                                                                    <td>Agent Fees</td>
-                                                                    <td class="red-color">
-                                                                        <img src="./assets/images/form-drop-down.svg" class="mr-2"/>
-                                                                        Overdue
-                                                                    </td>
-                                                                    <td>98 days due</td>
-                                                                    <td>$134,546</td>
-                                                                    <td>
-                                                                        <div class="table-action-btn">
-                                                                            <a href="#" class="ml-3">
-                                                                                <img src="./assets/images/table-download-btn.svg"/>
-                                                                            </a>
-                                                                            <a href="#" class="ml-3">
-                                                                                <img src="./assets/images/table-edit-btn.svg"/>
-                                                                            </a>
-                                                                            <a href="#" class="ml-3">
-                                                                                <img src="./assets/images/table-delete-btn.svg"/>
-                                                                            </a>
-                                                                        </div>
-                                                                    </td>
-                                                                </tr>
-                                                                <tr>
-                                                                    <td>PY-135431</td>
-                                                                    <td>AS-5462132</td>
-                                                                    <td>Ashwin Jayaraman</td>
-                                                                    <td>Agent Fees</td>
-                                                                    <td class="red-color">
-                                                                        <img src="./assets/images/form-drop-down.svg" class="mr-2"/>
-                                                                        Overdue
-                                                                    </td>
-                                                                    <td>98 days due</td>
-                                                                    <td>$134,546</td>
-                                                                    <td>
-                                                                        <div class="table-action-btn">
-                                                                            <a href="#" class="ml-3">
-                                                                                <img src="./assets/images/table-download-btn.svg"/>
-                                                                            </a>
-                                                                            <a href="#" class="ml-3">
-                                                                                <img src="./assets/images/table-edit-btn.svg"/>
-                                                                            </a>
-                                                                            <a href="#" class="ml-3">
-                                                                                <img src="./assets/images/table-delete-btn.svg"/>
-                                                                            </a>
-                                                                        </div>
-                                                                    </td>
-                                                                </tr>
-                                                                <tr>
-                                                                    <td>PY-135431</td>
-                                                                    <td>AS-5462132</td>
-                                                                    <td>Ashwin Jayaraman</td>
-                                                                    <td>Agent Fees</td>
-                                                                    <td class="red-color">
-                                                                        <img src="./assets/images/form-drop-down.svg" class="mr-2"/>
-                                                                        Overdue
-                                                                    </td>
-                                                                    <td>98 days due</td>
-                                                                    <td>$134,546</td>
-                                                                    <td>
-                                                                        <div class="table-action-btn">
-                                                                            <a href="#" class="ml-3">
-                                                                                <img src="./assets/images/table-download-btn.svg"/>
-                                                                            </a>
-                                                                            <a href="#" class="ml-3">
-                                                                                <img src="./assets/images/table-edit-btn.svg"/>
-                                                                            </a>
-                                                                            <a href="#" class="ml-3">
-                                                                                <img src="./assets/images/table-delete-btn.svg"/>
-                                                                            </a>
-                                                                        </div>
-                                                                    </td>
-                                                                </tr>
-                                                                <tr>
-                                                                    <td>PY-135431</td>
-                                                                    <td>AS-5462132</td>
-                                                                    <td>Ashwin Jayaraman</td>
-                                                                    <td>Agent Fees</td>
-                                                                    <td class="red-color">
-                                                                        <img src="./assets/images/form-drop-down.svg" class="mr-2"/>
-                                                                        Overdue
-                                                                    </td>
-                                                                    <td>98 days due</td>
-                                                                    <td>$134,546</td>
-                                                                    <td>
-                                                                        <div class="table-action-btn">
-                                                                            <a href="#" class="ml-3">
-                                                                                <img src="./assets/images/table-download-btn.svg"/>
-                                                                            </a>
-                                                                            <a href="#" class="ml-3">
-                                                                                <img src="./assets/images/table-edit-btn.svg"/>
-                                                                            </a>
-                                                                            <a href="#" class="ml-3">
-                                                                                <img src="./assets/images/table-delete-btn.svg"/>
-                                                                            </a>
-                                                                        </div>
-                                                                    </td>
-                                                                </tr>
-                                                                <tr>
-                                                                    <td>PY-135431</td>
-                                                                    <td>AS-5462132</td>
-                                                                    <td>Ashwin Jayaraman</td>
-                                                                    <td>Agent Fees</td>
-                                                                    <td class="red-color">
-                                                                        <img src="./assets/images/form-drop-down.svg" class="mr-2"/>
-                                                                        Overdue
-                                                                    </td>
-                                                                    <td>98 days due</td>
-                                                                    <td>$134,546</td>
-                                                                    <td>
-                                                                        <div class="table-action-btn">
-                                                                            <a href="#" class="ml-3">
-                                                                                <img src="./assets/images/table-download-btn.svg"/>
-                                                                            </a>
-                                                                            <a href="#" class="ml-3">
-                                                                                <img src="./assets/images/table-edit-btn.svg"/>
-                                                                            </a>
-                                                                            <a href="#" class="ml-3">
-                                                                                <img src="./assets/images/table-delete-btn.svg"/>
-                                                                            </a>
-                                                                        </div>
-                                                                    </td>
-                                                                </tr>
-                                                                <tr>
-                                                                    <td>PY-135431</td>
-                                                                    <td>AS-5462132</td>
-                                                                    <td>Ashwin Jayaraman</td>
-                                                                    <td>Agent Fees</td>
-                                                                    <td class="red-color">
-                                                                        <img src="./assets/images/form-drop-down.svg" class="mr-2"/>
-                                                                        Overdue
-                                                                    </td>
-                                                                    <td>98 days due</td>
-                                                                    <td>$134,546</td>
-                                                                    <td>
-                                                                        <div class="table-action-btn">
-                                                                            <a href="#" class="ml-3">
-                                                                                <img src="./assets/images/table-download-btn.svg"/>
-                                                                            </a>
-                                                                            <a href="#" class="ml-3">
-                                                                                <img src="./assets/images/table-edit-btn.svg"/>
-                                                                            </a>
-                                                                            <a href="#" class="ml-3">
-                                                                                <img src="./assets/images/table-delete-btn.svg"/>
-                                                                            </a>
-                                                                        </div>
-                                                                    </td>
-                                                                </tr>
-                                                                <tr>
-                                                                    <td>PY-135431</td>
-                                                                    <td>AS-5462132</td>
-                                                                    <td>Ashwin Jayaraman</td>
-                                                                    <td>Agent Fees</td>
-                                                                    <td class="red-color">
-                                                                        <img src="./assets/images/form-drop-down.svg" class="mr-2"/>
-                                                                        Overdue
-                                                                    </td>
-                                                                    <td>98 days due</td>
-                                                                    <td>$134,546</td>
-                                                                    <td>
-                                                                        <div class="table-action-btn">
-                                                                            <a href="#" class="ml-3">
-                                                                                <img src="./assets/images/table-download-btn.svg"/>
-                                                                            </a>
-                                                                            <a href="#" class="ml-3">
-                                                                                <img src="./assets/images/table-edit-btn.svg"/>
-                                                                            </a>
-                                                                            <a href="#" class="ml-3">
-                                                                                <img src="./assets/images/table-delete-btn.svg"/>
-                                                                            </a>
-                                                                        </div>
-                                                                    </td>
-                                                                </tr>
-                                                                <tr>
-                                                                    <td>PY-135431</td>
-                                                                    <td>AS-5462132</td>
-                                                                    <td>Ashwin Jayaraman</td>
-                                                                    <td>Agent Fees</td>
-                                                                    <td class="red-color">
-                                                                        <img src="./assets/images/form-drop-down.svg" class="mr-2"/>
-                                                                        Overdue
-                                                                    </td>
-                                                                    <td>98 days due</td>
-                                                                    <td>$134,546</td>
-                                                                    <td>
-                                                                        <div class="table-action-btn">
-                                                                            <a href="#" class="ml-3">
-                                                                                <img src="./assets/images/table-download-btn.svg"/>
-                                                                            </a>
-                                                                            <a href="#" class="ml-3">
-                                                                                <img src="./assets/images/table-edit-btn.svg"/>
-                                                                            </a>
-                                                                            <a href="#" class="ml-3">
-                                                                                <img src="./assets/images/table-delete-btn.svg"/>
-                                                                            </a>
-                                                                        </div>
-                                                                    </td>
-                                                                </tr>
-                                                                <tr>
-                                                                    <td>PY-135431</td>
-                                                                    <td>AS-5462132</td>
-                                                                    <td>Ashwin Jayaraman</td>
-                                                                    <td>Agent Fees</td>
-                                                                    <td class="red-color">
-                                                                        <img src="./assets/images/form-drop-down.svg" class="mr-2"/>
-                                                                        Overdue
-                                                                    </td>
-                                                                    <td>98 days due</td>
-                                                                    <td>$134,546</td>
-                                                                    <td>
-                                                                        <div class="table-action-btn">
-                                                                            <a href="#" class="ml-3">
-                                                                                <img src="./assets/images/table-download-btn.svg"/>
-                                                                            </a>
-                                                                            <a href="#" class="ml-3">
-                                                                                <img src="./assets/images/table-edit-btn.svg"/>
-                                                                            </a>
-                                                                            <a href="#" class="ml-3">
-                                                                                <img src="./assets/images/table-delete-btn.svg"/>
-                                                                            </a>
-                                                                        </div>
-                                                                    </td>
-                                                                </tr>
-                                                            </tbody>
-                                                        </table>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
+
                                         <!-- Table Section End -->
-                                    </div>
-                                    <div class="tab-pane fade" id="wallet" role="tabpanel"
-                                        aria-labelledby="finance-tab">
-                                        <!-- Table Section Start -->
-                                        <div class="admin-table finance-table">
-                                            <div class="row admin-table-body mt-3">
-                                                <div class="col">
-                                                    <div class="table-responsive">
-                                                        <table class="table table-sm">
-                                                            <thead>
-                                                                <tr>
-                                                                    <th scope="col">Payment ID</th>
-                                                                    <th scope="col">Client ID</th>
-                                                                    <th scope="col">Client name</th>
-                                                                    <th scope="col">Milestone</th>
-                                                                    <th scope="col">Status</th>
-                                                                    <th scope="col">Due Date</th>
-                                                                    <th scope="col">Amount</th>
-                                                                    <th scope="col"></th>
-                                                                </tr>
-                                                            </thead>
-                                                            <tbody>
-                                                                <tr>
-                                                                    <td>PY-135431</td>
-                                                                    <td>AS-5462132</td>
-                                                                    <td>Ashwin Jayaraman</td>
-                                                                    <td>Agent Fees</td>
-                                                                    <td class="red-color">
-                                                                        <img src="./assets/images/form-drop-down.svg" class="mr-2"/>
-                                                                        Overdue
-                                                                    </td>
-                                                                    <td>98 days due</td>
-                                                                    <td>$134,546</td>
-                                                                    <td>
-                                                                        <div class="table-action-btn">
-                                                                            <a href="#" class="ml-3">
-                                                                                <img src="./assets/images/table-download-btn.svg"/>
-                                                                            </a>
-                                                                            <a href="#" class="ml-3">
-                                                                                <img src="./assets/images/table-edit-btn.svg"/>
-                                                                            </a>
-                                                                            <a href="#" class="ml-3">
-                                                                                <img src="./assets/images/table-delete-btn.svg"/>
-                                                                            </a>
-                                                                        </div>
-                                                                    </td>
-                                                                </tr>
-                                                                <tr>
-                                                                    <td>PY-135431</td>
-                                                                    <td>AS-5462132</td>
-                                                                    <td>Ashwin Jayaraman</td>
-                                                                    <td>Agent Fees</td>
-                                                                    <td class="red-color">
-                                                                        <img src="./assets/images/form-drop-down.svg" class="mr-2"/>
-                                                                        Overdue
-                                                                    </td>
-                                                                    <td>98 days due</td>
-                                                                    <td>$134,546</td>
-                                                                    <td>
-                                                                        <div class="table-action-btn">
-                                                                            <a href="#" class="ml-3">
-                                                                                <img src="./assets/images/table-download-btn.svg"/>
-                                                                            </a>
-                                                                            <a href="#" class="ml-3">
-                                                                                <img src="./assets/images/table-edit-btn.svg"/>
-                                                                            </a>
-                                                                            <a href="#" class="ml-3">
-                                                                                <img src="./assets/images/table-delete-btn.svg"/>
-                                                                            </a>
-                                                                        </div>
-                                                                    </td>
-                                                                </tr>
-                                                                <tr>
-                                                                    <td>PY-135431</td>
-                                                                    <td>AS-5462132</td>
-                                                                    <td>Ashwin Jayaraman</td>
-                                                                    <td>Agent Fees</td>
-                                                                    <td class="red-color">
-                                                                        <img src="./assets/images/form-drop-down.svg" class="mr-2"/>
-                                                                        Overdue
-                                                                    </td>
-                                                                    <td>98 days due</td>
-                                                                    <td>$134,546</td>
-                                                                    <td>
-                                                                        <div class="table-action-btn">
-                                                                            <a href="#" class="ml-3">
-                                                                                <img src="./assets/images/table-download-btn.svg"/>
-                                                                            </a>
-                                                                            <a href="#" class="ml-3">
-                                                                                <img src="./assets/images/table-edit-btn.svg"/>
-                                                                            </a>
-                                                                            <a href="#" class="ml-3">
-                                                                                <img src="./assets/images/table-delete-btn.svg"/>
-                                                                            </a>
-                                                                        </div>
-                                                                    </td>
-                                                                </tr>
-                                                                <tr>
-                                                                    <td>PY-135431</td>
-                                                                    <td>AS-5462132</td>
-                                                                    <td>Ashwin Jayaraman</td>
-                                                                    <td>Agent Fees</td>
-                                                                    <td class="red-color">
-                                                                        <img src="./assets/images/form-drop-down.svg" class="mr-2"/>
-                                                                        Overdue
-                                                                    </td>
-                                                                    <td>98 days due</td>
-                                                                    <td>$134,546</td>
-                                                                    <td>
-                                                                        <div class="table-action-btn">
-                                                                            <a href="#" class="ml-3">
-                                                                                <img src="./assets/images/table-download-btn.svg"/>
-                                                                            </a>
-                                                                            <a href="#" class="ml-3">
-                                                                                <img src="./assets/images/table-edit-btn.svg"/>
-                                                                            </a>
-                                                                            <a href="#" class="ml-3">
-                                                                                <img src="./assets/images/table-delete-btn.svg"/>
-                                                                            </a>
-                                                                        </div>
-                                                                    </td>
-                                                                </tr>
-                                                                <tr>
-                                                                    <td>PY-135431</td>
-                                                                    <td>AS-5462132</td>
-                                                                    <td>Ashwin Jayaraman</td>
-                                                                    <td>Agent Fees</td>
-                                                                    <td class="red-color">
-                                                                        <img src="./assets/images/form-drop-down.svg" class="mr-2"/>
-                                                                        Overdue
-                                                                    </td>
-                                                                    <td>98 days due</td>
-                                                                    <td>$134,546</td>
-                                                                    <td>
-                                                                        <div class="table-action-btn">
-                                                                            <a href="#" class="ml-3">
-                                                                                <img src="./assets/images/table-download-btn.svg"/>
-                                                                            </a>
-                                                                            <a href="#" class="ml-3">
-                                                                                <img src="./assets/images/table-edit-btn.svg"/>
-                                                                            </a>
-                                                                            <a href="#" class="ml-3">
-                                                                                <img src="./assets/images/table-delete-btn.svg"/>
-                                                                            </a>
-                                                                        </div>
-                                                                    </td>
-                                                                </tr>
-                                                                <tr>
-                                                                    <td>PY-135431</td>
-                                                                    <td>AS-5462132</td>
-                                                                    <td>Ashwin Jayaraman</td>
-                                                                    <td>Agent Fees</td>
-                                                                    <td class="red-color">
-                                                                        <img src="./assets/images/form-drop-down.svg" class="mr-2"/>
-                                                                        Overdue
-                                                                    </td>
-                                                                    <td>98 days due</td>
-                                                                    <td>$134,546</td>
-                                                                    <td>
-                                                                        <div class="table-action-btn">
-                                                                            <a href="#" class="ml-3">
-                                                                                <img src="./assets/images/table-download-btn.svg"/>
-                                                                            </a>
-                                                                            <a href="#" class="ml-3">
-                                                                                <img src="./assets/images/table-edit-btn.svg"/>
-                                                                            </a>
-                                                                            <a href="#" class="ml-3">
-                                                                                <img src="./assets/images/table-delete-btn.svg"/>
-                                                                            </a>
-                                                                        </div>
-                                                                    </td>
-                                                                </tr>
-                                                                <tr>
-                                                                    <td>PY-135431</td>
-                                                                    <td>AS-5462132</td>
-                                                                    <td>Ashwin Jayaraman</td>
-                                                                    <td>Agent Fees</td>
-                                                                    <td class="red-color">
-                                                                        <img src="./assets/images/form-drop-down.svg" class="mr-2"/>
-                                                                        Overdue
-                                                                    </td>
-                                                                    <td>98 days due</td>
-                                                                    <td>$134,546</td>
-                                                                    <td>
-                                                                        <div class="table-action-btn">
-                                                                            <a href="#" class="ml-3">
-                                                                                <img src="./assets/images/table-download-btn.svg"/>
-                                                                            </a>
-                                                                            <a href="#" class="ml-3">
-                                                                                <img src="./assets/images/table-edit-btn.svg"/>
-                                                                            </a>
-                                                                            <a href="#" class="ml-3">
-                                                                                <img src="./assets/images/table-delete-btn.svg"/>
-                                                                            </a>
-                                                                        </div>
-                                                                    </td>
-                                                                </tr>
-                                                                <tr>
-                                                                    <td>PY-135431</td>
-                                                                    <td>AS-5462132</td>
-                                                                    <td>Ashwin Jayaraman</td>
-                                                                    <td>Agent Fees</td>
-                                                                    <td class="red-color">
-                                                                        <img src="./assets/images/form-drop-down.svg" class="mr-2"/>
-                                                                        Overdue
-                                                                    </td>
-                                                                    <td>98 days due</td>
-                                                                    <td>$134,546</td>
-                                                                    <td>
-                                                                        <div class="table-action-btn">
-                                                                            <a href="#" class="ml-3">
-                                                                                <img src="./assets/images/table-download-btn.svg"/>
-                                                                            </a>
-                                                                            <a href="#" class="ml-3">
-                                                                                <img src="./assets/images/table-edit-btn.svg"/>
-                                                                            </a>
-                                                                            <a href="#" class="ml-3">
-                                                                                <img src="./assets/images/table-delete-btn.svg"/>
-                                                                            </a>
-                                                                        </div>
-                                                                    </td>
-                                                                </tr>
-                                                                <tr>
-                                                                    <td>PY-135431</td>
-                                                                    <td>AS-5462132</td>
-                                                                    <td>Ashwin Jayaraman</td>
-                                                                    <td>Agent Fees</td>
-                                                                    <td class="red-color">
-                                                                        <img src="./assets/images/form-drop-down.svg" class="mr-2"/>
-                                                                        Overdue
-                                                                    </td>
-                                                                    <td>98 days due</td>
-                                                                    <td>$134,546</td>
-                                                                    <td>
-                                                                        <div class="table-action-btn">
-                                                                            <a href="#" class="ml-3">
-                                                                                <img src="./assets/images/table-download-btn.svg"/>
-                                                                            </a>
-                                                                            <a href="#" class="ml-3">
-                                                                                <img src="./assets/images/table-edit-btn.svg"/>
-                                                                            </a>
-                                                                            <a href="#" class="ml-3">
-                                                                                <img src="./assets/images/table-delete-btn.svg"/>
-                                                                            </a>
-                                                                        </div>
-                                                                    </td>
-                                                                </tr>
-                                                                <tr>
-                                                                    <td>PY-135431</td>
-                                                                    <td>AS-5462132</td>
-                                                                    <td>Ashwin Jayaraman</td>
-                                                                    <td>Agent Fees</td>
-                                                                    <td class="red-color">
-                                                                        <img src="./assets/images/form-drop-down.svg" class="mr-2"/>
-                                                                        Overdue
-                                                                    </td>
-                                                                    <td>98 days due</td>
-                                                                    <td>$134,546</td>
-                                                                    <td>
-                                                                        <div class="table-action-btn">
-                                                                            <a href="#" class="ml-3">
-                                                                                <img src="./assets/images/table-download-btn.svg"/>
-                                                                            </a>
-                                                                            <a href="#" class="ml-3">
-                                                                                <img src="./assets/images/table-edit-btn.svg"/>
-                                                                            </a>
-                                                                            <a href="#" class="ml-3">
-                                                                                <img src="./assets/images/table-delete-btn.svg"/>
-                                                                            </a>
-                                                                        </div>
-                                                                    </td>
-                                                                </tr>
-                                                                <tr>
-                                                                    <td>PY-135431</td>
-                                                                    <td>AS-5462132</td>
-                                                                    <td>Ashwin Jayaraman</td>
-                                                                    <td>Agent Fees</td>
-                                                                    <td class="red-color">
-                                                                        <img src="./assets/images/form-drop-down.svg" class="mr-2"/>
-                                                                        Overdue
-                                                                    </td>
-                                                                    <td>98 days due</td>
-                                                                    <td>$134,546</td>
-                                                                    <td>
-                                                                        <div class="table-action-btn">
-                                                                            <a href="#" class="ml-3">
-                                                                                <img src="./assets/images/table-download-btn.svg"/>
-                                                                            </a>
-                                                                            <a href="#" class="ml-3">
-                                                                                <img src="./assets/images/table-edit-btn.svg"/>
-                                                                            </a>
-                                                                            <a href="#" class="ml-3">
-                                                                                <img src="./assets/images/table-delete-btn.svg"/>
-                                                                            </a>
-                                                                        </div>
-                                                                    </td>
-                                                                </tr>
-                                                                <tr>
-                                                                    <td>PY-135431</td>
-                                                                    <td>AS-5462132</td>
-                                                                    <td>Ashwin Jayaraman</td>
-                                                                    <td>Agent Fees</td>
-                                                                    <td class="red-color">
-                                                                        <img src="./assets/images/form-drop-down.svg" class="mr-2"/>
-                                                                        Overdue
-                                                                    </td>
-                                                                    <td>98 days due</td>
-                                                                    <td>$134,546</td>
-                                                                    <td>
-                                                                        <div class="table-action-btn">
-                                                                            <a href="#" class="ml-3">
-                                                                                <img src="./assets/images/table-download-btn.svg"/>
-                                                                            </a>
-                                                                            <a href="#" class="ml-3">
-                                                                                <img src="./assets/images/table-edit-btn.svg"/>
-                                                                            </a>
-                                                                            <a href="#" class="ml-3">
-                                                                                <img src="./assets/images/table-delete-btn.svg"/>
-                                                                            </a>
-                                                                        </div>
-                                                                    </td>
-                                                                </tr>
-                                                                <tr>
-                                                                    <td>PY-135431</td>
-                                                                    <td>AS-5462132</td>
-                                                                    <td>Ashwin Jayaraman</td>
-                                                                    <td>Agent Fees</td>
-                                                                    <td class="red-color">
-                                                                        <img src="./assets/images/form-drop-down.svg" class="mr-2"/>
-                                                                        Overdue
-                                                                    </td>
-                                                                    <td>98 days due</td>
-                                                                    <td>$134,546</td>
-                                                                    <td>
-                                                                        <div class="table-action-btn">
-                                                                            <a href="#" class="ml-3">
-                                                                                <img src="./assets/images/table-download-btn.svg"/>
-                                                                            </a>
-                                                                            <a href="#" class="ml-3">
-                                                                                <img src="./assets/images/table-edit-btn.svg"/>
-                                                                            </a>
-                                                                            <a href="#" class="ml-3">
-                                                                                <img src="./assets/images/table-delete-btn.svg"/>
-                                                                            </a>
-                                                                        </div>
-                                                                    </td>
-                                                                </tr>
-                                                                <tr>
-                                                                    <td>PY-135431</td>
-                                                                    <td>AS-5462132</td>
-                                                                    <td>Ashwin Jayaraman</td>
-                                                                    <td>Agent Fees</td>
-                                                                    <td class="red-color">
-                                                                        <img src="./assets/images/form-drop-down.svg" class="mr-2"/>
-                                                                        Overdue
-                                                                    </td>
-                                                                    <td>98 days due</td>
-                                                                    <td>$134,546</td>
-                                                                    <td>
-                                                                        <div class="table-action-btn">
-                                                                            <a href="#" class="ml-3">
-                                                                                <img src="./assets/images/table-download-btn.svg"/>
-                                                                            </a>
-                                                                            <a href="#" class="ml-3">
-                                                                                <img src="./assets/images/table-edit-btn.svg"/>
-                                                                            </a>
-                                                                            <a href="#" class="ml-3">
-                                                                                <img src="./assets/images/table-delete-btn.svg"/>
-                                                                            </a>
-                                                                        </div>
-                                                                    </td>
-                                                                </tr>
-                                                                <tr>
-                                                                    <td>PY-135431</td>
-                                                                    <td>AS-5462132</td>
-                                                                    <td>Ashwin Jayaraman</td>
-                                                                    <td>Agent Fees</td>
-                                                                    <td class="red-color">
-                                                                        <img src="./assets/images/form-drop-down.svg" class="mr-2"/>
-                                                                        Overdue
-                                                                    </td>
-                                                                    <td>98 days due</td>
-                                                                    <td>$134,546</td>
-                                                                    <td>
-                                                                        <div class="table-action-btn">
-                                                                            <a href="#" class="ml-3">
-                                                                                <img src="./assets/images/table-download-btn.svg"/>
-                                                                            </a>
-                                                                            <a href="#" class="ml-3">
-                                                                                <img src="./assets/images/table-edit-btn.svg"/>
-                                                                            </a>
-                                                                            <a href="#" class="ml-3">
-                                                                                <img src="./assets/images/table-delete-btn.svg"/>
-                                                                            </a>
-                                                                        </div>
-                                                                    </td>
-                                                                </tr>
-                                                                <tr>
-                                                                    <td>PY-135431</td>
-                                                                    <td>AS-5462132</td>
-                                                                    <td>Ashwin Jayaraman</td>
-                                                                    <td>Agent Fees</td>
-                                                                    <td class="red-color">
-                                                                        <img src="./assets/images/form-drop-down.svg" class="mr-2"/>
-                                                                        Overdue
-                                                                    </td>
-                                                                    <td>98 days due</td>
-                                                                    <td>$134,546</td>
-                                                                    <td>
-                                                                        <div class="table-action-btn">
-                                                                            <a href="#" class="ml-3">
-                                                                                <img src="./assets/images/table-download-btn.svg"/>
-                                                                            </a>
-                                                                            <a href="#" class="ml-3">
-                                                                                <img src="./assets/images/table-edit-btn.svg"/>
-                                                                            </a>
-                                                                            <a href="#" class="ml-3">
-                                                                                <img src="./assets/images/table-delete-btn.svg"/>
-                                                                            </a>
-                                                                        </div>
-                                                                    </td>
-                                                                </tr>
-                                                            </tbody>
-                                                        </table>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <!-- Table Section End -->
-                                    </div>
-                                    <div class="tab-pane fade" id="invoices" role="tabpanel"
-                                        aria-labelledby="finance-tab">
-                                        <!-- Table Section Start -->
-                                        <div class="admin-table finance-table">
-                                            <div class="row admin-table-body mt-3">
-                                                <div class="col">
-                                                    <div class="table-responsive">
-                                                        <table class="table table-sm">
-                                                            <thead>
-                                                                <tr>
-                                                                    <th scope="col">Payment ID</th>
-                                                                    <th scope="col">Client ID</th>
-                                                                    <th scope="col">Client name</th>
-                                                                    <th scope="col">Milestone</th>
-                                                                    <th scope="col">Status</th>
-                                                                    <th scope="col">Due Date</th>
-                                                                    <th scope="col">Amount</th>
-                                                                    <th scope="col"></th>
-                                                                </tr>
-                                                            </thead>
-                                                            <tbody>
-                                                                <tr>
-                                                                    <td>PY-135431</td>
-                                                                    <td>AS-5462132</td>
-                                                                    <td>Ashwin Jayaraman</td>
-                                                                    <td>Agent Fees</td>
-                                                                    <td class="red-color">
-                                                                        <img src="./assets/images/form-drop-down.svg" class="mr-2"/>
-                                                                        Overdue
-                                                                    </td>
-                                                                    <td>98 days due</td>
-                                                                    <td>$134,546</td>
-                                                                    <td>
-                                                                        <div class="table-action-btn">
-                                                                            <a href="#" class="ml-3">
-                                                                                <img src="./assets/images/table-download-btn.svg"/>
-                                                                            </a>
-                                                                            <a href="#" class="ml-3">
-                                                                                <img src="./assets/images/table-edit-btn.svg"/>
-                                                                            </a>
-                                                                            <a href="#" class="ml-3">
-                                                                                <img src="./assets/images/table-delete-btn.svg"/>
-                                                                            </a>
-                                                                        </div>
-                                                                    </td>
-                                                                </tr>
-                                                                <tr>
-                                                                    <td>PY-135431</td>
-                                                                    <td>AS-5462132</td>
-                                                                    <td>Ashwin Jayaraman</td>
-                                                                    <td>Agent Fees</td>
-                                                                    <td class="red-color">
-                                                                        <img src="./assets/images/form-drop-down.svg" class="mr-2"/>
-                                                                        Overdue
-                                                                    </td>
-                                                                    <td>98 days due</td>
-                                                                    <td>$134,546</td>
-                                                                    <td>
-                                                                        <div class="table-action-btn">
-                                                                            <a href="#" class="ml-3">
-                                                                                <img src="./assets/images/table-download-btn.svg"/>
-                                                                            </a>
-                                                                            <a href="#" class="ml-3">
-                                                                                <img src="./assets/images/table-edit-btn.svg"/>
-                                                                            </a>
-                                                                            <a href="#" class="ml-3">
-                                                                                <img src="./assets/images/table-delete-btn.svg"/>
-                                                                            </a>
-                                                                        </div>
-                                                                    </td>
-                                                                </tr>
-                                                                <tr>
-                                                                    <td>PY-135431</td>
-                                                                    <td>AS-5462132</td>
-                                                                    <td>Ashwin Jayaraman</td>
-                                                                    <td>Agent Fees</td>
-                                                                    <td class="red-color">
-                                                                        <img src="./assets/images/form-drop-down.svg" class="mr-2"/>
-                                                                        Overdue
-                                                                    </td>
-                                                                    <td>98 days due</td>
-                                                                    <td>$134,546</td>
-                                                                    <td>
-                                                                        <div class="table-action-btn">
-                                                                            <a href="#" class="ml-3">
-                                                                                <img src="./assets/images/table-download-btn.svg"/>
-                                                                            </a>
-                                                                            <a href="#" class="ml-3">
-                                                                                <img src="./assets/images/table-edit-btn.svg"/>
-                                                                            </a>
-                                                                            <a href="#" class="ml-3">
-                                                                                <img src="./assets/images/table-delete-btn.svg"/>
-                                                                            </a>
-                                                                        </div>
-                                                                    </td>
-                                                                </tr>
-                                                                <tr>
-                                                                    <td>PY-135431</td>
-                                                                    <td>AS-5462132</td>
-                                                                    <td>Ashwin Jayaraman</td>
-                                                                    <td>Agent Fees</td>
-                                                                    <td class="red-color">
-                                                                        <img src="./assets/images/form-drop-down.svg" class="mr-2"/>
-                                                                        Overdue
-                                                                    </td>
-                                                                    <td>98 days due</td>
-                                                                    <td>$134,546</td>
-                                                                    <td>
-                                                                        <div class="table-action-btn">
-                                                                            <a href="#" class="ml-3">
-                                                                                <img src="./assets/images/table-download-btn.svg"/>
-                                                                            </a>
-                                                                            <a href="#" class="ml-3">
-                                                                                <img src="./assets/images/table-edit-btn.svg"/>
-                                                                            </a>
-                                                                            <a href="#" class="ml-3">
-                                                                                <img src="./assets/images/table-delete-btn.svg"/>
-                                                                            </a>
-                                                                        </div>
-                                                                    </td>
-                                                                </tr>
-                                                                <tr>
-                                                                    <td>PY-135431</td>
-                                                                    <td>AS-5462132</td>
-                                                                    <td>Ashwin Jayaraman</td>
-                                                                    <td>Agent Fees</td>
-                                                                    <td class="red-color">
-                                                                        <img src="./assets/images/form-drop-down.svg" class="mr-2"/>
-                                                                        Overdue
-                                                                    </td>
-                                                                    <td>98 days due</td>
-                                                                    <td>$134,546</td>
-                                                                    <td>
-                                                                        <div class="table-action-btn">
-                                                                            <a href="#" class="ml-3">
-                                                                                <img src="./assets/images/table-download-btn.svg"/>
-                                                                            </a>
-                                                                            <a href="#" class="ml-3">
-                                                                                <img src="./assets/images/table-edit-btn.svg"/>
-                                                                            </a>
-                                                                            <a href="#" class="ml-3">
-                                                                                <img src="./assets/images/table-delete-btn.svg"/>
-                                                                            </a>
-                                                                        </div>
-                                                                    </td>
-                                                                </tr>
-                                                                <tr>
-                                                                    <td>PY-135431</td>
-                                                                    <td>AS-5462132</td>
-                                                                    <td>Ashwin Jayaraman</td>
-                                                                    <td>Agent Fees</td>
-                                                                    <td class="red-color">
-                                                                        <img src="./assets/images/form-drop-down.svg" class="mr-2"/>
-                                                                        Overdue
-                                                                    </td>
-                                                                    <td>98 days due</td>
-                                                                    <td>$134,546</td>
-                                                                    <td>
-                                                                        <div class="table-action-btn">
-                                                                            <a href="#" class="ml-3">
-                                                                                <img src="./assets/images/table-download-btn.svg"/>
-                                                                            </a>
-                                                                            <a href="#" class="ml-3">
-                                                                                <img src="./assets/images/table-edit-btn.svg"/>
-                                                                            </a>
-                                                                            <a href="#" class="ml-3">
-                                                                                <img src="./assets/images/table-delete-btn.svg"/>
-                                                                            </a>
-                                                                        </div>
-                                                                    </td>
-                                                                </tr>
-                                                                <tr>
-                                                                    <td>PY-135431</td>
-                                                                    <td>AS-5462132</td>
-                                                                    <td>Ashwin Jayaraman</td>
-                                                                    <td>Agent Fees</td>
-                                                                    <td class="red-color">
-                                                                        <img src="./assets/images/form-drop-down.svg" class="mr-2"/>
-                                                                        Overdue
-                                                                    </td>
-                                                                    <td>98 days due</td>
-                                                                    <td>$134,546</td>
-                                                                    <td>
-                                                                        <div class="table-action-btn">
-                                                                            <a href="#" class="ml-3">
-                                                                                <img src="./assets/images/table-download-btn.svg"/>
-                                                                            </a>
-                                                                            <a href="#" class="ml-3">
-                                                                                <img src="./assets/images/table-edit-btn.svg"/>
-                                                                            </a>
-                                                                            <a href="#" class="ml-3">
-                                                                                <img src="./assets/images/table-delete-btn.svg"/>
-                                                                            </a>
-                                                                        </div>
-                                                                    </td>
-                                                                </tr>
-                                                                <tr>
-                                                                    <td>PY-135431</td>
-                                                                    <td>AS-5462132</td>
-                                                                    <td>Ashwin Jayaraman</td>
-                                                                    <td>Agent Fees</td>
-                                                                    <td class="red-color">
-                                                                        <img src="./assets/images/form-drop-down.svg" class="mr-2"/>
-                                                                        Overdue
-                                                                    </td>
-                                                                    <td>98 days due</td>
-                                                                    <td>$134,546</td>
-                                                                    <td>
-                                                                        <div class="table-action-btn">
-                                                                            <a href="#" class="ml-3">
-                                                                                <img src="./assets/images/table-download-btn.svg"/>
-                                                                            </a>
-                                                                            <a href="#" class="ml-3">
-                                                                                <img src="./assets/images/table-edit-btn.svg"/>
-                                                                            </a>
-                                                                            <a href="#" class="ml-3">
-                                                                                <img src="./assets/images/table-delete-btn.svg"/>
-                                                                            </a>
-                                                                        </div>
-                                                                    </td>
-                                                                </tr>
-                                                                <tr>
-                                                                    <td>PY-135431</td>
-                                                                    <td>AS-5462132</td>
-                                                                    <td>Ashwin Jayaraman</td>
-                                                                    <td>Agent Fees</td>
-                                                                    <td class="red-color">
-                                                                        <img src="./assets/images/form-drop-down.svg" class="mr-2"/>
-                                                                        Overdue
-                                                                    </td>
-                                                                    <td>98 days due</td>
-                                                                    <td>$134,546</td>
-                                                                    <td>
-                                                                        <div class="table-action-btn">
-                                                                            <a href="#" class="ml-3">
-                                                                                <img src="./assets/images/table-download-btn.svg"/>
-                                                                            </a>
-                                                                            <a href="#" class="ml-3">
-                                                                                <img src="./assets/images/table-edit-btn.svg"/>
-                                                                            </a>
-                                                                            <a href="#" class="ml-3">
-                                                                                <img src="./assets/images/table-delete-btn.svg"/>
-                                                                            </a>
-                                                                        </div>
-                                                                    </td>
-                                                                </tr>
-                                                                <tr>
-                                                                    <td>PY-135431</td>
-                                                                    <td>AS-5462132</td>
-                                                                    <td>Ashwin Jayaraman</td>
-                                                                    <td>Agent Fees</td>
-                                                                    <td class="red-color">
-                                                                        <img src="./assets/images/form-drop-down.svg" class="mr-2"/>
-                                                                        Overdue
-                                                                    </td>
-                                                                    <td>98 days due</td>
-                                                                    <td>$134,546</td>
-                                                                    <td>
-                                                                        <div class="table-action-btn">
-                                                                            <a href="#" class="ml-3">
-                                                                                <img src="./assets/images/table-download-btn.svg"/>
-                                                                            </a>
-                                                                            <a href="#" class="ml-3">
-                                                                                <img src="./assets/images/table-edit-btn.svg"/>
-                                                                            </a>
-                                                                            <a href="#" class="ml-3">
-                                                                                <img src="./assets/images/table-delete-btn.svg"/>
-                                                                            </a>
-                                                                        </div>
-                                                                    </td>
-                                                                </tr>
-                                                                <tr>
-                                                                    <td>PY-135431</td>
-                                                                    <td>AS-5462132</td>
-                                                                    <td>Ashwin Jayaraman</td>
-                                                                    <td>Agent Fees</td>
-                                                                    <td class="red-color">
-                                                                        <img src="./assets/images/form-drop-down.svg" class="mr-2"/>
-                                                                        Overdue
-                                                                    </td>
-                                                                    <td>98 days due</td>
-                                                                    <td>$134,546</td>
-                                                                    <td>
-                                                                        <div class="table-action-btn">
-                                                                            <a href="#" class="ml-3">
-                                                                                <img src="./assets/images/table-download-btn.svg"/>
-                                                                            </a>
-                                                                            <a href="#" class="ml-3">
-                                                                                <img src="./assets/images/table-edit-btn.svg"/>
-                                                                            </a>
-                                                                            <a href="#" class="ml-3">
-                                                                                <img src="./assets/images/table-delete-btn.svg"/>
-                                                                            </a>
-                                                                        </div>
-                                                                    </td>
-                                                                </tr>
-                                                                <tr>
-                                                                    <td>PY-135431</td>
-                                                                    <td>AS-5462132</td>
-                                                                    <td>Ashwin Jayaraman</td>
-                                                                    <td>Agent Fees</td>
-                                                                    <td class="red-color">
-                                                                        <img src="./assets/images/form-drop-down.svg" class="mr-2"/>
-                                                                        Overdue
-                                                                    </td>
-                                                                    <td>98 days due</td>
-                                                                    <td>$134,546</td>
-                                                                    <td>
-                                                                        <div class="table-action-btn">
-                                                                            <a href="#" class="ml-3">
-                                                                                <img src="./assets/images/table-download-btn.svg"/>
-                                                                            </a>
-                                                                            <a href="#" class="ml-3">
-                                                                                <img src="./assets/images/table-edit-btn.svg"/>
-                                                                            </a>
-                                                                            <a href="#" class="ml-3">
-                                                                                <img src="./assets/images/table-delete-btn.svg"/>
-                                                                            </a>
-                                                                        </div>
-                                                                    </td>
-                                                                </tr>
-                                                                <tr>
-                                                                    <td>PY-135431</td>
-                                                                    <td>AS-5462132</td>
-                                                                    <td>Ashwin Jayaraman</td>
-                                                                    <td>Agent Fees</td>
-                                                                    <td class="red-color">
-                                                                        <img src="./assets/images/form-drop-down.svg" class="mr-2"/>
-                                                                        Overdue
-                                                                    </td>
-                                                                    <td>98 days due</td>
-                                                                    <td>$134,546</td>
-                                                                    <td>
-                                                                        <div class="table-action-btn">
-                                                                            <a href="#" class="ml-3">
-                                                                                <img src="./assets/images/table-download-btn.svg"/>
-                                                                            </a>
-                                                                            <a href="#" class="ml-3">
-                                                                                <img src="./assets/images/table-edit-btn.svg"/>
-                                                                            </a>
-                                                                            <a href="#" class="ml-3">
-                                                                                <img src="./assets/images/table-delete-btn.svg"/>
-                                                                            </a>
-                                                                        </div>
-                                                                    </td>
-                                                                </tr>
-                                                                <tr>
-                                                                    <td>PY-135431</td>
-                                                                    <td>AS-5462132</td>
-                                                                    <td>Ashwin Jayaraman</td>
-                                                                    <td>Agent Fees</td>
-                                                                    <td class="red-color">
-                                                                        <img src="./assets/images/form-drop-down.svg" class="mr-2"/>
-                                                                        Overdue
-                                                                    </td>
-                                                                    <td>98 days due</td>
-                                                                    <td>$134,546</td>
-                                                                    <td>
-                                                                        <div class="table-action-btn">
-                                                                            <a href="#" class="ml-3">
-                                                                                <img src="./assets/images/table-download-btn.svg"/>
-                                                                            </a>
-                                                                            <a href="#" class="ml-3">
-                                                                                <img src="./assets/images/table-edit-btn.svg"/>
-                                                                            </a>
-                                                                            <a href="#" class="ml-3">
-                                                                                <img src="./assets/images/table-delete-btn.svg"/>
-                                                                            </a>
-                                                                        </div>
-                                                                    </td>
-                                                                </tr>
-                                                                <tr>
-                                                                    <td>PY-135431</td>
-                                                                    <td>AS-5462132</td>
-                                                                    <td>Ashwin Jayaraman</td>
-                                                                    <td>Agent Fees</td>
-                                                                    <td class="red-color">
-                                                                        <img src="./assets/images/form-drop-down.svg" class="mr-2"/>
-                                                                        Overdue
-                                                                    </td>
-                                                                    <td>98 days due</td>
-                                                                    <td>$134,546</td>
-                                                                    <td>
-                                                                        <div class="table-action-btn">
-                                                                            <a href="#" class="ml-3">
-                                                                                <img src="./assets/images/table-download-btn.svg"/>
-                                                                            </a>
-                                                                            <a href="#" class="ml-3">
-                                                                                <img src="./assets/images/table-edit-btn.svg"/>
-                                                                            </a>
-                                                                            <a href="#" class="ml-3">
-                                                                                <img src="./assets/images/table-delete-btn.svg"/>
-                                                                            </a>
-                                                                        </div>
-                                                                    </td>
-                                                                </tr>
-                                                                <tr>
-                                                                    <td>PY-135431</td>
-                                                                    <td>AS-5462132</td>
-                                                                    <td>Ashwin Jayaraman</td>
-                                                                    <td>Agent Fees</td>
-                                                                    <td class="red-color">
-                                                                        <img src="./assets/images/form-drop-down.svg" class="mr-2"/>
-                                                                        Overdue
-                                                                    </td>
-                                                                    <td>98 days due</td>
-                                                                    <td>$134,546</td>
-                                                                    <td>
-                                                                        <div class="table-action-btn">
-                                                                            <a href="#" class="ml-3">
-                                                                                <img src="./assets/images/table-download-btn.svg"/>
-                                                                            </a>
-                                                                            <a href="#" class="ml-3">
-                                                                                <img src="./assets/images/table-edit-btn.svg"/>
-                                                                            </a>
-                                                                            <a href="#" class="ml-3">
-                                                                                <img src="./assets/images/table-delete-btn.svg"/>
-                                                                            </a>
-                                                                        </div>
-                                                                    </td>
-                                                                </tr>
-                                                            </tbody>
-                                                        </table>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <!-- Table Section End -->
-                                    </div>
-                                    <div class="tab-pane fade" id="commission" role="tabpanel"
-                                        aria-labelledby="finance-tab">
-                                        <!-- Table Section Start -->
-                                        <div class="admin-table finance-table">
-                                            <div class="row admin-table-body mt-3">
-                                                <div class="col">
-                                                    <div class="table-responsive">
-                                                        <table class="table table-sm">
-                                                            <thead>
-                                                                <tr>
-                                                                    <th scope="col">Payment ID</th>
-                                                                    <th scope="col">Client ID</th>
-                                                                    <th scope="col">Client name</th>
-                                                                    <th scope="col">Milestone</th>
-                                                                    <th scope="col">Status</th>
-                                                                    <th scope="col">Due Date</th>
-                                                                    <th scope="col">Amount</th>
-                                                                    <th scope="col"></th>
-                                                                </tr>
-                                                            </thead>
-                                                            <tbody>
-                                                                <tr>
-                                                                    <td>PY-135431</td>
-                                                                    <td>AS-5462132</td>
-                                                                    <td>Ashwin Jayaraman</td>
-                                                                    <td>Agent Fees</td>
-                                                                    <td class="red-color">
-                                                                        <img src="./assets/images/form-drop-down.svg" class="mr-2"/>
-                                                                        Overdue
-                                                                    </td>
-                                                                    <td>98 days due</td>
-                                                                    <td>$134,546</td>
-                                                                    <td>
-                                                                        <div class="table-action-btn">
-                                                                            <a href="#" class="ml-3">
-                                                                                <img src="./assets/images/table-download-btn.svg"/>
-                                                                            </a>
-                                                                            <a href="#" class="ml-3">
-                                                                                <img src="./assets/images/table-edit-btn.svg"/>
-                                                                            </a>
-                                                                            <a href="#" class="ml-3">
-                                                                                <img src="./assets/images/table-delete-btn.svg"/>
-                                                                            </a>
-                                                                        </div>
-                                                                    </td>
-                                                                </tr>
-                                                                <tr>
-                                                                    <td>PY-135431</td>
-                                                                    <td>AS-5462132</td>
-                                                                    <td>Ashwin Jayaraman</td>
-                                                                    <td>Agent Fees</td>
-                                                                    <td class="red-color">
-                                                                        <img src="./assets/images/form-drop-down.svg" class="mr-2"/>
-                                                                        Overdue
-                                                                    </td>
-                                                                    <td>98 days due</td>
-                                                                    <td>$134,546</td>
-                                                                    <td>
-                                                                        <div class="table-action-btn">
-                                                                            <a href="#" class="ml-3">
-                                                                                <img src="./assets/images/table-download-btn.svg"/>
-                                                                            </a>
-                                                                            <a href="#" class="ml-3">
-                                                                                <img src="./assets/images/table-edit-btn.svg"/>
-                                                                            </a>
-                                                                            <a href="#" class="ml-3">
-                                                                                <img src="./assets/images/table-delete-btn.svg"/>
-                                                                            </a>
-                                                                        </div>
-                                                                    </td>
-                                                                </tr>
-                                                                <tr>
-                                                                    <td>PY-135431</td>
-                                                                    <td>AS-5462132</td>
-                                                                    <td>Ashwin Jayaraman</td>
-                                                                    <td>Agent Fees</td>
-                                                                    <td class="red-color">
-                                                                        <img src="./assets/images/form-drop-down.svg" class="mr-2"/>
-                                                                        Overdue
-                                                                    </td>
-                                                                    <td>98 days due</td>
-                                                                    <td>$134,546</td>
-                                                                    <td>
-                                                                        <div class="table-action-btn">
-                                                                            <a href="#" class="ml-3">
-                                                                                <img src="./assets/images/table-download-btn.svg"/>
-                                                                            </a>
-                                                                            <a href="#" class="ml-3">
-                                                                                <img src="./assets/images/table-edit-btn.svg"/>
-                                                                            </a>
-                                                                            <a href="#" class="ml-3">
-                                                                                <img src="./assets/images/table-delete-btn.svg"/>
-                                                                            </a>
-                                                                        </div>
-                                                                    </td>
-                                                                </tr>
-                                                                <tr>
-                                                                    <td>PY-135431</td>
-                                                                    <td>AS-5462132</td>
-                                                                    <td>Ashwin Jayaraman</td>
-                                                                    <td>Agent Fees</td>
-                                                                    <td class="red-color">
-                                                                        <img src="./assets/images/form-drop-down.svg" class="mr-2"/>
-                                                                        Overdue
-                                                                    </td>
-                                                                    <td>98 days due</td>
-                                                                    <td>$134,546</td>
-                                                                    <td>
-                                                                        <div class="table-action-btn">
-                                                                            <a href="#" class="ml-3">
-                                                                                <img src="./assets/images/table-download-btn.svg"/>
-                                                                            </a>
-                                                                            <a href="#" class="ml-3">
-                                                                                <img src="./assets/images/table-edit-btn.svg"/>
-                                                                            </a>
-                                                                            <a href="#" class="ml-3">
-                                                                                <img src="./assets/images/table-delete-btn.svg"/>
-                                                                            </a>
-                                                                        </div>
-                                                                    </td>
-                                                                </tr>
-                                                                <tr>
-                                                                    <td>PY-135431</td>
-                                                                    <td>AS-5462132</td>
-                                                                    <td>Ashwin Jayaraman</td>
-                                                                    <td>Agent Fees</td>
-                                                                    <td class="red-color">
-                                                                        <img src="./assets/images/form-drop-down.svg" class="mr-2"/>
-                                                                        Overdue
-                                                                    </td>
-                                                                    <td>98 days due</td>
-                                                                    <td>$134,546</td>
-                                                                    <td>
-                                                                        <div class="table-action-btn">
-                                                                            <a href="#" class="ml-3">
-                                                                                <img src="./assets/images/table-download-btn.svg"/>
-                                                                            </a>
-                                                                            <a href="#" class="ml-3">
-                                                                                <img src="./assets/images/table-edit-btn.svg"/>
-                                                                            </a>
-                                                                            <a href="#" class="ml-3">
-                                                                                <img src="./assets/images/table-delete-btn.svg"/>
-                                                                            </a>
-                                                                        </div>
-                                                                    </td>
-                                                                </tr>
-                                                                <tr>
-                                                                    <td>PY-135431</td>
-                                                                    <td>AS-5462132</td>
-                                                                    <td>Ashwin Jayaraman</td>
-                                                                    <td>Agent Fees</td>
-                                                                    <td class="red-color">
-                                                                        <img src="./assets/images/form-drop-down.svg" class="mr-2"/>
-                                                                        Overdue
-                                                                    </td>
-                                                                    <td>98 days due</td>
-                                                                    <td>$134,546</td>
-                                                                    <td>
-                                                                        <div class="table-action-btn">
-                                                                            <a href="#" class="ml-3">
-                                                                                <img src="./assets/images/table-download-btn.svg"/>
-                                                                            </a>
-                                                                            <a href="#" class="ml-3">
-                                                                                <img src="./assets/images/table-edit-btn.svg"/>
-                                                                            </a>
-                                                                            <a href="#" class="ml-3">
-                                                                                <img src="./assets/images/table-delete-btn.svg"/>
-                                                                            </a>
-                                                                        </div>
-                                                                    </td>
-                                                                </tr>
-                                                                <tr>
-                                                                    <td>PY-135431</td>
-                                                                    <td>AS-5462132</td>
-                                                                    <td>Ashwin Jayaraman</td>
-                                                                    <td>Agent Fees</td>
-                                                                    <td class="red-color">
-                                                                        <img src="./assets/images/form-drop-down.svg" class="mr-2"/>
-                                                                        Overdue
-                                                                    </td>
-                                                                    <td>98 days due</td>
-                                                                    <td>$134,546</td>
-                                                                    <td>
-                                                                        <div class="table-action-btn">
-                                                                            <a href="#" class="ml-3">
-                                                                                <img src="./assets/images/table-download-btn.svg"/>
-                                                                            </a>
-                                                                            <a href="#" class="ml-3">
-                                                                                <img src="./assets/images/table-edit-btn.svg"/>
-                                                                            </a>
-                                                                            <a href="#" class="ml-3">
-                                                                                <img src="./assets/images/table-delete-btn.svg"/>
-                                                                            </a>
-                                                                        </div>
-                                                                    </td>
-                                                                </tr>
-                                                                <tr>
-                                                                    <td>PY-135431</td>
-                                                                    <td>AS-5462132</td>
-                                                                    <td>Ashwin Jayaraman</td>
-                                                                    <td>Agent Fees</td>
-                                                                    <td class="red-color">
-                                                                        <img src="./assets/images/form-drop-down.svg" class="mr-2"/>
-                                                                        Overdue
-                                                                    </td>
-                                                                    <td>98 days due</td>
-                                                                    <td>$134,546</td>
-                                                                    <td>
-                                                                        <div class="table-action-btn">
-                                                                            <a href="#" class="ml-3">
-                                                                                <img src="./assets/images/table-download-btn.svg"/>
-                                                                            </a>
-                                                                            <a href="#" class="ml-3">
-                                                                                <img src="./assets/images/table-edit-btn.svg"/>
-                                                                            </a>
-                                                                            <a href="#" class="ml-3">
-                                                                                <img src="./assets/images/table-delete-btn.svg"/>
-                                                                            </a>
-                                                                        </div>
-                                                                    </td>
-                                                                </tr>
-                                                                <tr>
-                                                                    <td>PY-135431</td>
-                                                                    <td>AS-5462132</td>
-                                                                    <td>Ashwin Jayaraman</td>
-                                                                    <td>Agent Fees</td>
-                                                                    <td class="red-color">
-                                                                        <img src="./assets/images/form-drop-down.svg" class="mr-2"/>
-                                                                        Overdue
-                                                                    </td>
-                                                                    <td>98 days due</td>
-                                                                    <td>$134,546</td>
-                                                                    <td>
-                                                                        <div class="table-action-btn">
-                                                                            <a href="#" class="ml-3">
-                                                                                <img src="./assets/images/table-download-btn.svg"/>
-                                                                            </a>
-                                                                            <a href="#" class="ml-3">
-                                                                                <img src="./assets/images/table-edit-btn.svg"/>
-                                                                            </a>
-                                                                            <a href="#" class="ml-3">
-                                                                                <img src="./assets/images/table-delete-btn.svg"/>
-                                                                            </a>
-                                                                        </div>
-                                                                    </td>
-                                                                </tr>
-                                                                <tr>
-                                                                    <td>PY-135431</td>
-                                                                    <td>AS-5462132</td>
-                                                                    <td>Ashwin Jayaraman</td>
-                                                                    <td>Agent Fees</td>
-                                                                    <td class="red-color">
-                                                                        <img src="./assets/images/form-drop-down.svg" class="mr-2"/>
-                                                                        Overdue
-                                                                    </td>
-                                                                    <td>98 days due</td>
-                                                                    <td>$134,546</td>
-                                                                    <td>
-                                                                        <div class="table-action-btn">
-                                                                            <a href="#" class="ml-3">
-                                                                                <img src="./assets/images/table-download-btn.svg"/>
-                                                                            </a>
-                                                                            <a href="#" class="ml-3">
-                                                                                <img src="./assets/images/table-edit-btn.svg"/>
-                                                                            </a>
-                                                                            <a href="#" class="ml-3">
-                                                                                <img src="./assets/images/table-delete-btn.svg"/>
-                                                                            </a>
-                                                                        </div>
-                                                                    </td>
-                                                                </tr>
-                                                                <tr>
-                                                                    <td>PY-135431</td>
-                                                                    <td>AS-5462132</td>
-                                                                    <td>Ashwin Jayaraman</td>
-                                                                    <td>Agent Fees</td>
-                                                                    <td class="red-color">
-                                                                        <img src="./assets/images/form-drop-down.svg" class="mr-2"/>
-                                                                        Overdue
-                                                                    </td>
-                                                                    <td>98 days due</td>
-                                                                    <td>$134,546</td>
-                                                                    <td>
-                                                                        <div class="table-action-btn">
-                                                                            <a href="#" class="ml-3">
-                                                                                <img src="./assets/images/table-download-btn.svg"/>
-                                                                            </a>
-                                                                            <a href="#" class="ml-3">
-                                                                                <img src="./assets/images/table-edit-btn.svg"/>
-                                                                            </a>
-                                                                            <a href="#" class="ml-3">
-                                                                                <img src="./assets/images/table-delete-btn.svg"/>
-                                                                            </a>
-                                                                        </div>
-                                                                    </td>
-                                                                </tr>
-                                                                <tr>
-                                                                    <td>PY-135431</td>
-                                                                    <td>AS-5462132</td>
-                                                                    <td>Ashwin Jayaraman</td>
-                                                                    <td>Agent Fees</td>
-                                                                    <td class="red-color">
-                                                                        <img src="./assets/images/form-drop-down.svg" class="mr-2"/>
-                                                                        Overdue
-                                                                    </td>
-                                                                    <td>98 days due</td>
-                                                                    <td>$134,546</td>
-                                                                    <td>
-                                                                        <div class="table-action-btn">
-                                                                            <a href="#" class="ml-3">
-                                                                                <img src="./assets/images/table-download-btn.svg"/>
-                                                                            </a>
-                                                                            <a href="#" class="ml-3">
-                                                                                <img src="./assets/images/table-edit-btn.svg"/>
-                                                                            </a>
-                                                                            <a href="#" class="ml-3">
-                                                                                <img src="./assets/images/table-delete-btn.svg"/>
-                                                                            </a>
-                                                                        </div>
-                                                                    </td>
-                                                                </tr>
-                                                                <tr>
-                                                                    <td>PY-135431</td>
-                                                                    <td>AS-5462132</td>
-                                                                    <td>Ashwin Jayaraman</td>
-                                                                    <td>Agent Fees</td>
-                                                                    <td class="red-color">
-                                                                        <img src="./assets/images/form-drop-down.svg" class="mr-2"/>
-                                                                        Overdue
-                                                                    </td>
-                                                                    <td>98 days due</td>
-                                                                    <td>$134,546</td>
-                                                                    <td>
-                                                                        <div class="table-action-btn">
-                                                                            <a href="#" class="ml-3">
-                                                                                <img src="./assets/images/table-download-btn.svg"/>
-                                                                            </a>
-                                                                            <a href="#" class="ml-3">
-                                                                                <img src="./assets/images/table-edit-btn.svg"/>
-                                                                            </a>
-                                                                            <a href="#" class="ml-3">
-                                                                                <img src="./assets/images/table-delete-btn.svg"/>
-                                                                            </a>
-                                                                        </div>
-                                                                    </td>
-                                                                </tr>
-                                                                <tr>
-                                                                    <td>PY-135431</td>
-                                                                    <td>AS-5462132</td>
-                                                                    <td>Ashwin Jayaraman</td>
-                                                                    <td>Agent Fees</td>
-                                                                    <td class="red-color">
-                                                                        <img src="./assets/images/form-drop-down.svg" class="mr-2"/>
-                                                                        Overdue
-                                                                    </td>
-                                                                    <td>98 days due</td>
-                                                                    <td>$134,546</td>
-                                                                    <td>
-                                                                        <div class="table-action-btn">
-                                                                            <a href="#" class="ml-3">
-                                                                                <img src="./assets/images/table-download-btn.svg"/>
-                                                                            </a>
-                                                                            <a href="#" class="ml-3">
-                                                                                <img src="./assets/images/table-edit-btn.svg"/>
-                                                                            </a>
-                                                                            <a href="#" class="ml-3">
-                                                                                <img src="./assets/images/table-delete-btn.svg"/>
-                                                                            </a>
-                                                                        </div>
-                                                                    </td>
-                                                                </tr>
-                                                                <tr>
-                                                                    <td>PY-135431</td>
-                                                                    <td>AS-5462132</td>
-                                                                    <td>Ashwin Jayaraman</td>
-                                                                    <td>Agent Fees</td>
-                                                                    <td class="red-color">
-                                                                        <img src="./assets/images/form-drop-down.svg" class="mr-2"/>
-                                                                        Overdue
-                                                                    </td>
-                                                                    <td>98 days due</td>
-                                                                    <td>$134,546</td>
-                                                                    <td>
-                                                                        <div class="table-action-btn">
-                                                                            <a href="#" class="ml-3">
-                                                                                <img src="./assets/images/table-download-btn.svg"/>
-                                                                            </a>
-                                                                            <a href="#" class="ml-3">
-                                                                                <img src="./assets/images/table-edit-btn.svg"/>
-                                                                            </a>
-                                                                            <a href="#" class="ml-3">
-                                                                                <img src="./assets/images/table-delete-btn.svg"/>
-                                                                            </a>
-                                                                        </div>
-                                                                    </td>
-                                                                </tr>
-                                                                <tr>
-                                                                    <td>PY-135431</td>
-                                                                    <td>AS-5462132</td>
-                                                                    <td>Ashwin Jayaraman</td>
-                                                                    <td>Agent Fees</td>
-                                                                    <td class="red-color">
-                                                                        <img src="./assets/images/form-drop-down.svg" class="mr-2"/>
-                                                                        Overdue
-                                                                    </td>
-                                                                    <td>98 days due</td>
-                                                                    <td>$134,546</td>
-                                                                    <td>
-                                                                        <div class="table-action-btn">
-                                                                            <a href="#" class="ml-3">
-                                                                                <img src="./assets/images/table-download-btn.svg"/>
-                                                                            </a>
-                                                                            <a href="#" class="ml-3">
-                                                                                <img src="./assets/images/table-edit-btn.svg"/>
-                                                                            </a>
-                                                                            <a href="#" class="ml-3">
-                                                                                <img src="./assets/images/table-delete-btn.svg"/>
-                                                                            </a>
-                                                                        </div>
-                                                                    </td>
-                                                                </tr>
-                                                            </tbody>
-                                                        </table>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <!-- Table Section End -->
-                                    </div>
+
                                     <div class="tab-pane fade" id="client-portal" role="tabpanel"
                                         aria-labelledby="finance-tab">
                                     </div>
@@ -1916,14 +148,24 @@
 <script>
 
 $(document).ready(function() {
-$('#element').toast('show')
+
+
+
 // Setup - add a text input to each footer cell
+var table = $('#example').DataTable( {
+    orderCellsTop: true,
+    fixedHeader: false,
+    searching:true
+} );
 $('#example thead tr').clone(true).appendTo( '#example thead' );
 $('#example thead tr:eq(1) th').each( function (i) {
     if(i != 0){
     var title = $(this).text();
-    $(this).html( '<input type="text"  class="form-control filter" placeholder="Search '+title+'" />' );
-
+    if(title == 'Action'){
+      $(this).html( '');
+    }else {
+      $(this).html( '<input type="text"  class="form-control filter" placeholder="Search '+title+'" />' );
+    }
     $( 'input', this ).on( 'keyup change', function () {
         if ( table.column(i).search() !== this.value ) {
             table
@@ -1937,43 +179,170 @@ $('#example thead tr:eq(1) th').each( function (i) {
     $(this).html( '');
   }
 } );
-
-
-
 $('#myInputTextField').on('keyup change',()=>{
   console.log($('#myInputTextField').val())
       table.search(''+$('#myInputTextField').val()).draw() ;
 })
-
-$(".filter").hide(); // hidden search input
+$("#example tr").eq(1).hide(); // hidden search input
 
 $("#filter").click(()=>{
-$('.filter').toggle(
+$("#example tr").eq(1).toggle(
   function () {
-    $(".filter").css({display: "none !important"});
+    $("#example tr").eq(1).css({display: "none !important"});
 }, function () {
 
-    $(".filter").css({display: "block !important"});
+    $("#example tr").eq(1).css({display: "block !important"});
 });
 })
 
 
 
-
-var table = $('#example').DataTable( {
+// Setup - add a text input to each footer cell
+var table2 = $('#example2').DataTable( {
     orderCellsTop: true,
     fixedHeader: false,
     searching:true
 } );
+$('#example2 thead tr').clone(true).appendTo( '#example2 thead' );
+$('#example2 thead tr:eq(1) th').each( function (i) {
+    if(i != 0){
+    var title = $(this).text();
+    if(title == 'Action'){
+      $(this).html('');
+    }else {
+      $(this).html( '<input type="text"  class="form-control filter" placeholder="Search '+title+'" />' );
+    }
+    $( 'input', this ).on( 'keyup change', function () {
+        if ( table2.column(i).search() !== this.value ) {
+            table2
+                .column(i)
+                .search( this.value )
+                .draw();
+        }
+    } );
+  }
+  else{
+    $(this).html( '');
+  }
+} );
+$('#myInputTextField').on('keyup change',()=>{
+  console.log($('#myInputTextField').val())
+      table2.search(''+$('#myInputTextField').val()).draw() ;
+})
+$("#example2 tr").eq(1).hide(); // hidden search input
+
+$("#filter").click(()=>{
+$("#example2 tr").eq(1).toggle(
+  function () {
+    $("#example2 tr").eq(1).css({display: "none !important"});
+}, function () {
+
+    $("#example2 tr").eq(1).css({display: "block !important"});
+});
+})
+
+// Setup - add a text input to each footer cell
+var table3 = $('#example3').DataTable( {
+    orderCellsTop: true,
+    fixedHeader: false,
+    searching:true
+} );
+$('#example3 thead tr').clone(true).appendTo( '#example3 thead' );
+$('#example3 thead tr:eq(1) th').each( function (i) {
+    if(i != 0){
+    var title = $(this).text();
+    if(title == 'Action'){
+      $(this).html( '');
+    }else {
+      $(this).html( '<input type="text"  class="form-control filter" placeholder="Search '+title+'" />' );
+    }
+    $( 'input', this ).on( 'keyup change', function () {
+        if ( table3.column(i).search() !== this.value ) {
+            table3
+                .column(i)
+                .search( this.value )
+                .draw();
+        }
+    } );
+  }
+  else{
+    $(this).html( '');
+  }
+} );
+$('#myInputTextField').on('keyup change',()=>{
+  console.log($('#myInputTextField').val())
+      table3.search(''+$('#myInputTextField').val()).draw() ;
+})
+$("#example3 tr").eq(1).hide(); // hidden search input
+
+$("#filter").click(()=>{
+$("#example3 tr").eq(1).toggle(
+  function () {
+    $("#example3 tr").eq(1).css({display: "none !important"});
+}, function () {
+
+    $("#example3 tr").eq(1).css({display: "block !important"});
+});
+})
+
+// Setup - add a text input to each footer cell
+var table4 = $('#example4').DataTable( {
+    orderCellsTop: true,
+    fixedHeader: false,
+    searching:true
+} );
+$('#example4 thead tr').clone(true).appendTo( '#example4 thead' );
+$('#example4 thead tr:eq(1) th').each( function (i) {
+    if(i != 0){
+    var title = $(this).text();
+    if(title == 'Action'){
+      $(this).html( '');
+    }else {
+      $(this).html( '<input type="text"  class="form-control filter" placeholder="Search '+title+'" />' );
+    }
+
+    $( 'input', this ).on( 'keyup change', function () {
+        if ( table3.column(i).search() !== this.value ) {
+            table4
+                .column(i)
+                .search( this.value )
+                .draw();
+        }
+    } );
+  }
+  else{
+    $(this).html( '');
+  }
+} );
+$('#myInputTextField').on('keyup change',()=>{
+  console.log($('#myInputTextField').val())
+      table4.search(''+$('#myInputTextField').val()).draw() ;
+})
+$("#example4 tr").eq(1).hide(); // hidden search input
+
+$("#filter").click(()=>{
+$("#example4 tr").eq(1).toggle(
+  function () {
+    $("#example4 tr").eq(1).css({display: "none !important"});
+}, function () {
+
+    $("#example4 tr").eq(1).css({display: "block !important"});
+});
+})
 
 } );
+
+
+
+
+
 
 const app = new Vue({
     el: '#app',
 
     data() {
       return {
-        leads: {!! json_encode($leads) !!},
+        leads:{} ,
         editing:0,
         current_lead:{},
 
@@ -2072,4 +441,6 @@ $('.form-field__input').each(function() {
   }
 });
 </script>
+@livewireScripts
+
 @endpush

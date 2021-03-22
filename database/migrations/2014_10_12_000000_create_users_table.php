@@ -37,6 +37,8 @@ class CreateUsersTable extends Migration
             $table->string('address_code')->nullable();
             $table->unsignedBigInteger('invited_by')->unsigned()->nullable();
             $table->foreign('invited_by')->references('id')->on('users')->onDelete('set null');
+            $table->unsignedBigInteger('follow_id')->unsigned()->nullable();
+            $table->foreign('follow_id')->references('id')->on('users')->onDelete('set null');
 
 
 

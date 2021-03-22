@@ -3,14 +3,18 @@
 namespace App\Http\Controllers\Agent;
 
 use App\Models\tasks;
+use App\Models\user;
+
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Models\documents;
+use Illuminate\Support\Facades\Auth;
+
 class SettingsController extends Controller
 {
     public function index(Request $request){
-      $leads = tasks::all();
-      return view('Agent.settings.settings',['leads'=>$leads]);
+      $user = Auth::user();
+      return view('Agent.settings.settings',['user'=>$user]);
 
     }
     public function editScreen(Request $request){
@@ -21,12 +25,15 @@ class SettingsController extends Controller
     }
 
     public function edit(Request $request){
-      $leads = tasks::all();
-      $data = request();
+      $leads = user::all();
+      $data = $request->all();
+      unset($data['_token']);
+      unset($data['file']);
 
-      $edit = tasks::query()->where('id',request('id'))->update(array_merge(array_filter($data)));
+      $user = Auth::user();
+      $edit = user::query()->where('id',$user->id)->update(array_merge(array_filter($data)));
 
-      return Redirect::back();
+      return redirect('/settings');
 
     }
     public function add(Request $request){

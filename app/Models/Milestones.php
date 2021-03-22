@@ -8,4 +8,13 @@ use Illuminate\Database\Eloquent\Model;
 class Milestones extends Model
 {
     use HasFactory;
+    protected $guarded = [
+        'id',
+
+    ];
+    public function payment()
+     {
+        return $this->belongsTo(Payments::class,'payment_id','id');
+      }
+      
 }

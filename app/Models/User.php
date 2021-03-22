@@ -9,11 +9,13 @@ use Illuminate\Notifications\Notifiable;
 use Laravel\Passport\HasApiTokens;
 use Illuminate\Support\Facades\Hash;
 use Laravel\Cashier\Billable;
+use Spatie\Permission\Traits\HasRoles;
 
 class User extends Authenticatable
 {
     use HasFactory, Notifiable;
     use Billable;
+    use HasRoles;
 
     /**
      * The attributes that are mass assignable.
@@ -67,5 +69,37 @@ class User extends Authenticatable
        {
           return $this->hasMany(accounts::class,'user_id','id');
         }
+        public function calls()
+        {
+           return $this->hasMany(calls::class,'user_id','id');
+         }
+         public function tasks()
+         {
+            return $this->hasMany(tasks::class,'user_id','id');
+          }
+          public function meetings()
+          {
+             return $this->hasMany(meetings::class,'user_id','id');
+           }
+           public function documents()
+           {
+              return $this->hasMany(documents::class,'user_id','id');
+            }
+            public function commissions()
+            {
+               return $this->hasMany(Commission::class,'user_id','id');
+             }
+             public function payments()
+             {
+                return $this->hasMany(Payments::class,'user_id','id');
+              }
+              public function milestones()
+              {
+                 return $this->hasMany(Milestones::class,'user_id','id');
+               }
+               public function employees()
+               {
+                  return $this->hasMany(User::class,'follow_id','id');
+                }
 
 }

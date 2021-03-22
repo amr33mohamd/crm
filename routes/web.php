@@ -135,6 +135,7 @@ Route::get('/tasks/delete/{id}', [App\Http\Controllers\Agent\TasksController::cl
 
 ////////////////////
 Route::get('/marketing', [App\Http\Controllers\Agent\SocialController::class, 'index'])->name('marketing');
+Route::post('/marketing/new/action', [App\Http\Controllers\Agent\SocialController::class, 'add'])->name('AddMarketing');
 
 
 
@@ -145,13 +146,16 @@ Route::get('/payments', [App\Http\Controllers\Agent\PaymentsController::class, '
 
 ////////////////////
 Route::get('/affiliate', [App\Http\Controllers\Agent\AffiliateController::class, 'index'])->name('affiliate');
- 
+
 
 ////////////////////
-Route::get('/employees', [App\Http\Controllers\Agent\EmployeesController::class, 'index'])->name('employees');
+Route::get('/employees', App\Http\Controllers\Agent\EmployeesController::class)->name('employees');
+Route::get('/employees/add/action', [App\Http\Controllers\Agent\EmployeesController::class,'add'])->name('NewEmployeeAction');
+
 
 ////////////////////
 Route::get('/settings', [App\Http\Controllers\Agent\SettingsController::class, 'index'])->name('settings');
+Route::post('/settingsAction', [App\Http\Controllers\Agent\SettingsController::class, 'edit'])->name('settingsAction');
 
 
 });

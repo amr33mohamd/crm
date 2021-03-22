@@ -21,6 +21,8 @@ class CreatePaymentsTable extends Migration
             $table->integer('amount');
             $table->unsignedBigInteger('designed_milestone_id')->unsigned()->nullable();
             $table->foreign('designed_milestone_id')->references('id')->on('designed_milestones')->onDelete('cascade');
+            $table->unsignedBigInteger('account_id')->unsigned()->nullable();
+            $table->foreign('account_id')->references('id')->on('accounts')->onDelete('cascade');
 
             $table->timestamps();
         });

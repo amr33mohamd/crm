@@ -26,6 +26,8 @@ class CreateDocumentsTable extends Migration
             $table->string('description')->nullable();
             $table->string('related_document')->nullable();
             $table->string('related_document_revision')->nullable();
+            $table->unsignedBigInteger('user_id')->unsigned();
+            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
 
             $table->timestamps();
         });
