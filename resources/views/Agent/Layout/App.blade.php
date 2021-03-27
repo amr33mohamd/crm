@@ -22,9 +22,7 @@ div.dataTables_wrapper div.dataTables_filter{
  display: none !important;
 
 }
-.table-responsive{
-  overflow: hidden !important;
-}
+
 </style>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
     <!-- style css -->
